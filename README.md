@@ -1,21 +1,33 @@
-# Hello world docker action
+# Consensys Doctools Github action and Docker image
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+Consensys Doctools suite provides the required software to write, build, test and publish
+Consensys branded and homogeneous documentation.
 
-## Inputs
+## Github Action
 
-## `who-to-greet`
+The Github action hosted in the repository provides a way to build and publish static documentation
+site using the common template.
 
-**Required** The name of the person to greet. Default `"World"`.
+### Example usage
 
-## Outputs
+```yaml
+      - uses: Consensys/doctool-action-builder@main
+        name: "Build the doc"
+```
 
-## `time`
+## `doctools` Docker image
 
-The time we greeted you.
+The Doctools Docker image is built from this repository and is used in the Github Action.
 
-## Example usage
+It is also made to eas doc preview and local development.
+Documentation contributors do not have to install and configure Python, Node.Js and other tools locally
+to preview and test their doc work. Docker is the only required tool.
 
-uses: actions/hello-world-docker-action@v1
-with:
-who-to-greet: 'Mona the Octocat'
+Using the Docker Image also enables to ensure that it will build everywhere in the same way. So waht you build locally will be exactly the same in the final hosted site.
+
+### Example usage
+
+```bash
+docker pull ghcr.io/consensys/doctools:latest
+docker run --rm -i -p 8000:8000 -v ${PWD}:/docs -w /docs consensys/doctools:latest serve
+```
