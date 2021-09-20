@@ -1,0 +1,6 @@
+name: 'Build Consensys doc'
+description: 'Builds the Consensys documentation using a Docker container with all dependencies installed'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

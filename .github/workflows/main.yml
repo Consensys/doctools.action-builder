@@ -1,0 +1,11 @@
+on: [push]
+
+jobs:
+  build-with-docker:
+    runs-on: ubuntu-latest
+    name: Build doc with Docker
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build step
+        uses: ./ # Uses the action in the root directory

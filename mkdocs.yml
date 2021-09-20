@@ -1,0 +1,5 @@
+theme:
+  name: material
+site_name: Sample
+nav:
+  - Home: index.md
