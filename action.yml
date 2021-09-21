@@ -1,5 +1,5 @@
 name: 'Build Consensys doc'
-description: 'Builds the Consensys documentation using a Docker container with all dependencies installed'
+description: 'Build the ConsenSys documentation using a Docker container with all dependencies installed'
 branding:
   icon: 'upload-cloud'
   color: 'blue'
