@@ -23,13 +23,13 @@ It is also made to eas doc preview and local development.
 Documentation contributors do not have to install and configure Python, Node.Js and other tools locally
 to preview and test their doc work. Docker is the only required tool.
 
-Using the Docker Image also enables to ensure that it will build everywhere in the same way. So waht you build locally will be exactly the same in the final hosted site.
+Using the Docker Image also enables to ensure that it will build everywhere in the same way. So what you build locally will be exactly the same in the final hosted site.
 
 ### Example usage with Docker command for macOS
 
 ```bash
-docker pull ghcr.io/consensys/doctools:latest
-docker run --env-file ./.env -p 8000:8000 -v ${PWD}:/workspace/ --name mkdocs-serve -w /workspace/ mkdocs-consensys:latest serve --dev-addr 0.0.0.0:8000
+docker pull ghcr.io/consensys/doctools-builder:latest
+docker run --env-file ./.env -p 8000:8000 -v ${PWD}:/workspace/ --name mkdocs-serve -w /workspace/ ghcr.io/consensys/doctools-builder:latest serve --dev-addr 0.0.0.0:8000
 open http://127.0.0.1:8000/
 ```
 
@@ -44,7 +44,7 @@ services:
     container_name: mkdocs-serve
     ports:
       - "127.0.0.1:8000:8000"
-    image: mkdocs-consensys:latest
+    image: ghcr.io/consensys/doctools-builder:latest
     working_dir: /workspace/
     env_file: .env
     command: ["serve", "--dev-addr", "0.0.0.0:8000"]

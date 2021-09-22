@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME: doctools
+  IMAGE_NAME: doctools-builder
   IMAGE_TAG: latest
   REGISTRY: ghcr.io
 
@@ -43,14 +43,6 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           docker tag $IMAGE_NAME $IMAGE_ID:$IMAGE_TAG
           docker push $IMAGE_ID:$IMAGE_TAG
-  build-with-docker:
-    name: Build doc with Docker
-    needs: publish_docker
-    runs-on: ubuntu-latest
-    container:
-      image: ${{ env.IMAGE_ID }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build
-        run: mkdocs build -s
+
+      - name: "Test building doc using action from ${{ github.repository }}"
+        uses: ./

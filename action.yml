@@ -6,4 +6,4 @@ branding:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'Dockerfile' # can we have the actual published image here?
