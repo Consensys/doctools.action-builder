@@ -1,3 +1,5 @@
+[![Build and publish Docker image](https://github.com/ConsenSys/doctools.action-builder/actions/workflows/docker.yml/badge.svg)](https://github.com/ConsenSys/doctools.action-builder/actions/workflows/docker.yml)
+
 # Consensys Doctools Github action and Docker image
 
 Consensys Doctools suite provides the required software to write, build, test and publish

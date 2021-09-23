@@ -6,4 +6,4 @@ branding:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/consensys/doctools-builder:latest' # can we have the actual published image here?
+  image: 'docker://ghcr.io/consensys/doctools-builder:latest'

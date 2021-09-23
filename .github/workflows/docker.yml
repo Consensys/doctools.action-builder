@@ -44,5 +44,5 @@ jobs:
           docker tag $IMAGE_NAME $IMAGE_ID:$IMAGE_TAG
           docker push $IMAGE_ID:$IMAGE_TAG
 
-      - name: "Test building doc using action from ${{ github.repository }}"
+      - name: Test building doc using action from ${{ github.repository }}
         uses: ./
