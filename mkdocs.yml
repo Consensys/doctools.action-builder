@@ -1,5 +1,4 @@
-theme:
-  name: material
+INHERIT: ./common/custom_theme/base.yml
 site_name: Sample
 nav:
   - Home: index.md
