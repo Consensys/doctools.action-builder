@@ -6,10 +6,11 @@ services:
     ports:
       - "0.0.0.0:8000:8000"
     image: ghcr.io/consensys/doctools-builder:latest
+    build:
+      context: .
     working_dir: /workspace/
-    env_file: ../.env
-    command: ["serve", "--dev-addr", "0.0.0.0:8000"]
+    env_file: .env
     volumes:
       - type: bind
-        source: ../
+        source: .
         target: /workspace

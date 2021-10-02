@@ -19,4 +19,4 @@ runs:
         LINTER_RULES_PATH: /common/config/lint/
         MARKDOWN_CONFIG_FILE: markdown.yml
         LOG_LEVEL: ERROR
-        FILTER_REGEX_EXCLUDE: /common
+        FILTER_REGEX_EXCLUDE: ./common

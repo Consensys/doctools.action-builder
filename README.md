@@ -31,8 +31,8 @@ Using the Docker Image also enables to ensure that it will build everywhere in t
 
 ```bash
 docker pull ghcr.io/consensys/doctools-builder:latest
-docker run --env-file ./.env -p 8000:8000 -v ${PWD}:/workspace/ --name mkdocs-serve -w /workspace/ ghcr.io/consensys/doctools-builder:latest serve --dev-addr 0.0.0.0:8000
-open http://127.0.0.1:8000/
+docker run --env-file ./.env -p 8000:8000 -v ${PWD}:/workspace/ --name mkdocs-serve -w /workspace/ ghcr.io/consensys/doctools-builder:latest
+open http://localhost:8000/
 ```
 
 ### Example usage with Docker compose
@@ -40,16 +40,16 @@ open http://127.0.0.1:8000/
 Create the Docker Compose file:
 
 ```yml "docker-compose.uml"
-version: '3'
+---
+version: '3.2'
 services:
   mkdocs:
     container_name: mkdocs-serve
     ports:
-      - "127.0.0.1:8000:8000"
+      - "0.0.0.0:8000:8000"
     image: ghcr.io/consensys/doctools-builder:latest
     working_dir: /workspace/
     env_file: .env
-    command: ["serve", "--dev-addr", "0.0.0.0:8000"]
     volumes:
       - type: bind
         source: .

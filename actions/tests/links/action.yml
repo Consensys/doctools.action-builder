@@ -12,4 +12,4 @@ runs:
         use-verbose-mode: yes
         check-modified-files-only: yes
         base-branch: main
-        config-file: ./common/config/link-check.json
+        config-file: /common/config/link-check.json

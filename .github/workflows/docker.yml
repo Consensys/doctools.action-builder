@@ -26,7 +26,7 @@ jobs:
         run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Image minimal test
-        run: docker run --rm -v ${PWD}:/docs -w /docs $IMAGE_NAME build -s
+        run: docker run --rm -v ${PWD}:/docs -w /docs $IMAGE_NAME mkdocs build -s
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1

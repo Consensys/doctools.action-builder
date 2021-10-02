@@ -19,7 +19,7 @@ runs:
         echo "PR_VERSION=PR-${{ github.event.number }}" >> $GITHUB_ENV
 
     - name: Build doc
-      uses: ./common/.github/actions/build
+      uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
         SITE_URL: https://${{ env.CI_REPOSITORY_OWNER_SLUG }}.github.io/${{ env.CI_REPOSITORY_NAME }}/${{ env.PR_VERSION }}/
         VERSION: ${{ env.PR_VERSION }}

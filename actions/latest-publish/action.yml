@@ -25,13 +25,13 @@ runs:
         echo "VERSION=0.0.1" >> $GITHUB_ENV
 
     - name: Build doc
-      uses: ./common/.github/actions/build
+      uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
         SITE_URL: ${{ env.SITE_URL_BASE }}${{ env.LANGUAGE }}/${{ env.LATEST_VERSION }}/
         VERSION: ${{ env.LATEST_VERSION }}
 
     - name: Publish to AWS
-      uses: ./common/.github/actions/publish-aws
+      uses: ConsenSys/doctools.action-builder/actions/publish-aws@main
       with:
         VERSION: ${{ env.LATEST_VERSION }}
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}

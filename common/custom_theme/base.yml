@@ -49,7 +49,7 @@ extra:
       link: !ENV [SOCIAL_WEB ,'https://consensys.net/quorum/developers']
 theme:
   name: material
-  custom_dir: common/custom_theme
+  custom_dir: /common/custom_theme
   language: !ENV [LANGUAGE, 'en']
   palette:
     - media: "(prefers-color-scheme: light)"

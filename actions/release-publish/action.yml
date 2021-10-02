@@ -23,20 +23,20 @@ runs:
         echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
     - name: Build doc
-      uses: ./common/.github/actions/build
+      uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
         SITE_URL: ${{ env.SITE_URL_BASE }}${{ env.LANGUAGE }}/${{ env.TAG }}/
         VERSION: ${{ env.TAG }}
 
     - name: Publish stable version to AWS
-      uses: ./common/.github/actions/publish-aws
+      uses: ConsenSys/doctools.action-builder/actions/publish-aws@main
       with:
         VERSION: ${{ env.STABLE_VERSION }}
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
 
     - name: Publish tag version to AWS
-      uses: ./common/.github/actions/publish-aws
+      uses: ConsenSys/doctools.action-builder/actions/publish-aws@main
       with:
         VERSION: ${{ env.TAG }}
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}
