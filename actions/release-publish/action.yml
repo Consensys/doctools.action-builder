@@ -8,6 +8,10 @@ inputs:
   AWS_SECRET_ACCESS_KEY:
     description: 'AWS secrets key'
     required: true
+  SITE_URL_BASE:
+    description: 'Hosting URL base'
+    required: false
+    default: "https://consensys.net/docs/"
 
 runs:
   using: "composite"
@@ -25,7 +29,7 @@ runs:
     - name: Build doc
       uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
-        SITE_URL: ${{ env.SITE_URL_BASE }}${{ env.LANGUAGE }}/${{ env.TAG }}/
+        SITE_URL: ${{ inputs.SITE_URL_BASE }}${{ env.PROJECT }}/${{ env.LANGUAGE }}/${{ env.TAG }}/
         VERSION: ${{ env.TAG }}
 
     - name: Publish stable version to AWS
