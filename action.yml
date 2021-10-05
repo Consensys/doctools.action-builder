@@ -8,7 +8,7 @@ inputs:
   command:
     description: 'command'
     required: false
-    default: "mkdocs build -s" # default to build command as the one provided in image is serve
+    default: "build -s" # default to build command as the one provided in image is serve
 
 runs:
   using: 'docker'

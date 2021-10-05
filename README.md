@@ -39,7 +39,7 @@ open http://localhost:8000/
 
 Create the Docker Compose file:
 
-```yml "docker-compose.uml"
+```yml "docker-compose.yml"
 ---
 version: '3.2'
 services:
@@ -60,4 +60,38 @@ and run the service:
 
 ```bash
 docker-compose up
+```
+
+## Template development
+
+Clone this repos in a sibling folder (not in the current folder or you may commit and it's better not to have russian dolls folders)
+
+```bash
+git clone https://github.com/ConsenSys/doctools.action-builder.git ${PWD}/../doctool-action-builder
+```
+Run the container with a mount point of the common folder into `/common`
+
+```bash
+docker run --rm --env-file ./.env -p 8000:8000 -v ${PWD}:/workspace/ -v ${PWD}/../doctool-action-builder/common/:/common/ --name mkdocs-serve -w /workspace/ ghcr.io/consensys/doctools-builder:latest
+```
+or if you want to use a Docker Compose:
+
+```yml "docker-compose.dev.yml"
+---
+version: '3.2'
+services:
+  mkdocs:
+    container_name: mkdocs-serve-dev
+    ports:
+      - "0.0.0.0:8000:8000"
+    image: ghcr.io/consensys/doctools-builder:latest
+    working_dir: /workspace/
+    env_file: .env
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+      - type: bind
+        source: ../doctool-action-builder/common
+        target: /common
 ```
