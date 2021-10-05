@@ -10,13 +10,19 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Checkout tools repo
+      uses: actions/checkout@v2
+      with:
+        repository: ConsenSys/doctools.action-builder
+        path: .doctools.action-builder
+
     - name: Lint Code Base
       uses: github/super-linter/slim@v4
       env:
         VALIDATE_ALL_CODEBASE: "false"
         DEFAULT_BRANCH: main
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
-        LINTER_RULES_PATH: /common/config/lint/
+        LINTER_RULES_PATH: ./.doctools.action-builder/common/config/lint/
         MARKDOWN_CONFIG_FILE: markdown.yml
         LOG_LEVEL: ERROR
         FILTER_REGEX_EXCLUDE: ./common
