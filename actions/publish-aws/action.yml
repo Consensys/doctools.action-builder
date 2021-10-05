@@ -16,11 +16,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Set destination env vars
-      shell: sh
-      run: |
-        echo "DEST_DIR=${{ env.PROJECT }}/${{ env.LANGUAGE }}/${{ inputs.VERSION }}/" >> $GITHUB_ENV
-
     - name: Upload to AWS
       uses: jakejarvis/s3-sync-action@master
       with:
@@ -31,3 +26,4 @@ runs:
         AWS_S3_BUCKET: ${{ env.AWS_S3_BUCKET  }}
         AWS_REGION: ${{ env.AWS_REGION }}
         SOURCE_DIR: ${{ env.SOURCE_DIR }}
+        DEST_DIR: ${{ env.PROJECT }}/${{ env.LANGUAGE }}/${{ inputs.VERSION }}/
