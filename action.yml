@@ -4,14 +4,9 @@ branding:
   icon: 'upload-cloud'
   color: 'blue'
 
-inputs:
-  command:
-    description: 'command'
-    required: false
-    default: "build -s" # default to build command as the one provided in image is serve
-
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/consensys/doctools-builder:latest'
   args:
-    - ${{ inputs.command }}
+    - "build"
+    - "-s"

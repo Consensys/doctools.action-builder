@@ -17,7 +17,7 @@ runs:
   using: "composite"
   steps:
     - name: set environment vars from .env file
-      uses: c-py/action-dotenv-to-setenv@v2
+      uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
       with:
         env-file: '.env'
 

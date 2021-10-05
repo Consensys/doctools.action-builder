@@ -6,12 +6,12 @@ runs:
   using: "composite"
   steps:
     - name: set environment vars from .env file
-      uses: c-py/action-dotenv-to-setenv@v2
+      uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
       with:
         env-file: '.env'
 
     - name: Get additional Github env vars
-      uses: FranzDiebold/github-env-vars-action@v2
+      uses: FranzDiebold/github-env-vars-action@b9b3a88cfa3ad9bde40c291143c28f918e2d1668 #v2.3.0
 
     - name: Set PR_VERSION env vars
       shell: sh
@@ -25,7 +25,7 @@ runs:
         VERSION: ${{ env.PR_VERSION }}
 
     - name: Deploy Preview
-      uses: JamesIves/github-pages-deploy-action@4.1.5
+      uses: JamesIves/github-pages-deploy-action@0f24da7de3e7e135102609a4c9633b025be8411b #4.1.5
       with:
         branch: gh-pages # The branch the action should deploy to.
         folder: site # The folder the action should deploy.
@@ -34,7 +34,7 @@ runs:
         single-commit: true
 
     - name: Add comment with link to preview doc
-      uses: marocchino/sticky-pull-request-comment@v2
+      uses: marocchino/sticky-pull-request-comment@322a2451dae6c7831d1a8b931275a7f78147c888 #v2.1.1
       with:
         header: ${{ env.PR_VERSION }}
         recreate: true
