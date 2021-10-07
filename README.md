@@ -64,7 +64,7 @@ docker-compose up
 
 ## Template development
 
-Clone this repos in a sibling folder (not in the current folder or you may commit and it's better not to have russian dolls folders)
+`cd` into the template repo cloned from [https://github.com/ConsenSys/doctools.template-site](https://github.com/ConsenSys/doctools.template-site) and run the following:
 
 ```bash
 git clone https://github.com/ConsenSys/doctools.action-builder.git ${PWD}/../doctool-action-builder
