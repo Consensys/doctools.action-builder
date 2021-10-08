@@ -34,9 +34,6 @@ extra:
   analytics:
     provider: gtm
     gtmid: !ENV GTM_ID
-  languages:
-    en: English (en)
-    zh: 中文 (zh)
   version: !ENV [VERSION ,'latest']
   single_version: !ENV [SINGLE_VERSION ,true]
   # TODO Add a version file path here to be used in version JS
