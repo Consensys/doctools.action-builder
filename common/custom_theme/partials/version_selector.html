@@ -1,10 +1,14 @@
 {% if config.extra.version and config.theme.language %}
   <script>
     // TODO Has to be targeting the root /docs/
-    const site_version_json = '{{config.site_url + "versions.json" }}'
+    const site_url = '{{config.site_url}}'
     const site_current_language = '{{config.theme.language}}';
     const site_current_version = '{{config.extra.version}}';
   </script>
+
+<pre>
+{{config.extra.version}}
+</pre>
 
   <form class="md-header__option" name="version">
     <select id="__version" class="md-search__input" aria-label="version">

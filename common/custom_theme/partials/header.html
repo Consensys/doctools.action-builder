@@ -29,9 +29,10 @@
       </div>
     </div>
 
-    <!-- Site version selector -->
-    {{config.extra.version}}
-    {% include "partials/version_selector.html" %}
+    {% if not config.extra.single_version %}
+      <!-- Site version selector -->
+      {% include "partials/version_selector.html" %}
+    {% endif %}
 
     {% if not config.theme.palette is mapping %}
       <form class="md-header__option" data-md-component="palette">

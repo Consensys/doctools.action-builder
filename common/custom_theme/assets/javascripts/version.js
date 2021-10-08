@@ -28,7 +28,7 @@ function updateVersionsDropDown(versions, currentLanguage, currentVersion){
 // update spec page on completions
 function getVersionsFromJsonFile(){
   $.ajaxSetup({ cache: false });
-  $.getJSON( site_version_json, function( data ) {
+  $.getJSON( site_url + "versions.json" , function( data ) {
     if(!jQuery.isEmptyObject(data)){ versions = data; }
   })
   .always(
@@ -40,4 +40,11 @@ function getVersionsFromJsonFile(){
 
 $(function() {
   getVersionsFromJsonFile();
+});
+
+$('#__version').change(function(){
+  const targetVersion = $(this).val();
+  console.log(targetVersion);
+  window.location.href = site_url + "/" + site_current_language + "/" + targetVersion;
+  return false
 });
