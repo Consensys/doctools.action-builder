@@ -39,8 +39,22 @@
 
 {% endblock %}
 
-{% if config.extra.announce %}
-  {% block announce %}
+{% block scripts %}
+  {{ super() }}
+  {% if config.extra.debug %}
+    {% include "partials/debug.html" %}
+  {% endif %}
+{% endblock %}
+
+{% block announce %}
+  {% if config.extra.announce %}
     {{ config.extra.announce }}
-  {% endblock %}
-{% endif %}
+  {% else %}
+    <!--    Hack to remove announcement gap completely-->
+    <style>
+      div[data-md-component="announce"] {
+        display: none;
+      }
+    </style>
+  {% endif %}
+{% endblock %}

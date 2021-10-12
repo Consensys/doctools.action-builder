@@ -20,12 +20,15 @@ repo_url: !ENV [REPOS_URL, 'https://github.com/Consensys/doctools.template-site'
 # Project information
 site_url: !ENV [SITE_URL, 'http://0.0.0.0:8000/']
 site_author: !ENV [COMPANY ,'ConsenSys']
-copyright: !ENV [COPYRIGHT ,'This documentation is licensed under Apache 2.0 license']
+copyright: !ENV [COPYRIGHT ,'This documentation is hosted by <a href="https://consensys.net/">ConsenSys</a> and licensed under Apache 2.0 license']
 
 extra:
+  debug: !ENV [DEBUG , false]
+  version:
+    number: !ENV [VERSION ,'latest']
+    switch: !ENV [VERSION_SWITCH , false]
   logo_is_text: !ENV [LOGO_IS_TEXT ,false]
   latest_version_warning:
-    url_contains: /latest/
     text: 'You are reading the development version of this documentation and
     some displayed features may not be available in the stable release.
     You can switch to stable version using the switch in the header.'
@@ -34,10 +37,7 @@ extra:
   analytics:
     provider: gtm
     gtmid: !ENV GTM_ID
-  version: !ENV [VERSION ,'latest']
-  single_version: !ENV [SINGLE_VERSION ,true]
   # TODO Add a version file path here to be used in version JS
-  announce: !ENV [ANNOUNCE ,'']
   social:
     - icon: fontawesome/brands/discord
       link: !ENV [SOCIAL_DISCORD ,'https://discord.gg/5U9Jwp7']

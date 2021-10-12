@@ -1,14 +1,10 @@
-{% if config.extra.version and config.theme.language %}
+{% if config.extra.version and config.extra.version.number and config.extra.version.switch %}
   <script>
     // TODO Has to be targeting the root /docs/
     const site_url = '{{config.site_url}}'
     const site_current_language = '{{config.theme.language}}';
-    const site_current_version = '{{config.extra.version}}';
+    const site_current_version = '{{config.extra.version.number}}';
   </script>
-
-<pre>
-{{config.extra.version}}
-</pre>
 
   <form class="md-header__option" name="version">
     <select id="__version" class="md-search__input" aria-label="version">
