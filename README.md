@@ -27,71 +27,43 @@ to preview and test their doc work. Docker is the only required tool.
 
 Using the Docker Image also enables to ensure that it will build everywhere in the same way. So what you build locally will be exactly the same in the final hosted site.
 
-### Example usage with Docker command for macOS
+## Using the Docker image for template development
 
-```bash
-docker pull ghcr.io/consensys/doctools-builder:latest
-docker run --env-file ./.env -p 8000:8000 -v ${PWD}:/workspace/ --name mkdocs-serve -w /workspace/ ghcr.io/consensys/doctools-builder:latest
-open http://localhost:8000/
-```
+This process is not for regular users who only want to preview their doc site.
+If you want to preview, please refer to the Doctools doc site.
 
-### Example usage with Docker compose
+To be able to develop templates, you will have to run that repos alongside the template repos.
 
-Create the Docker Compose file:
+1. Clone the template repository from [https://github.com/ConsenSys/doctools.template-site.git](https://github.com/ConsenSys/doctools.template-site.git) on your local machine.
 
-```yml "docker-compose.yml"
----
-version: '3.2'
-services:
-  mkdocs:
-    container_name: mkdocs-serve
-    ports:
-      - "0.0.0.0:8000:8000"
-    image: ghcr.io/consensys/doctools-builder:latest
-    working_dir: /workspace/
-    env_file: .env
-    volumes:
-      - type: bind
-        source: .
-        target: /workspace
-```
+   ```bash
+    git clone https://github.com/ConsenSys/doctools.template-site.git
+    ```
 
-and run the service:
+1. Clone the builder repository from [https://github.com/ConsenSys/doctools.action-builder.git](https://github.com/ConsenSys/doctools.action-builder.git) on your local machine at the same level as the template repos.
 
-```bash
-docker-compose up
-```
+    ```bash
+    git clone https://github.com/ConsenSys/doctools.action-builder.git
+    ```
 
-## Template development
+1. Resulting directory tree is:
 
-`cd` into the template repo cloned from [https://github.com/ConsenSys/doctools.template-site](https://github.com/ConsenSys/doctools.template-site) and run the following:
+    ```text
+    base-dir
+    ├── doctools.template-site
+    └── doctools.action-builder
+    ```
 
-```bash
-git clone https://github.com/ConsenSys/doctools.action-builder.git ${PWD}/../doctool-action-builder
-```
-Run the container with a mount point of the common folder into `/common`
+1. Pull latest docker image
 
-```bash
-docker run --rm --env-file ./.env -p 8000:8000 -v ${PWD}:/workspace/ -v ${PWD}/../doctool-action-builder/common/:/common/ --name mkdocs-serve -w /workspace/ ghcr.io/consensys/doctools-builder:latest
-```
-or if you want to use a Docker Compose:
+    ```bash
+    docker pull ghcr.io/consensys/doctools-builder:latest
+    ```
 
-```yml "docker-compose.dev.yml"
----
-version: '3.2'
-services:
-  mkdocs:
-    container_name: mkdocs-serve-dev
-    ports:
-      - "0.0.0.0:8000:8000"
-    image: ghcr.io/consensys/doctools-builder:latest
-    working_dir: /workspace/
-    env_file: .env
-    volumes:
-      - type: bind
-        source: .
-        target: /workspace
-      - type: bind
-        source: ../doctool-action-builder/common
-        target: /common
-```
+1. Run the Docker Compose service:
+
+   `cd` into the `doctools.template-site` dir and run:
+
+    ```bash
+    docker compose up -f docker-compose.dev.yml -d
+    ```
