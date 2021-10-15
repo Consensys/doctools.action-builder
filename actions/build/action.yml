@@ -23,7 +23,15 @@ runs:
         echo "VERSION=${{ inputs.VERSION }}" >> $GITHUB_ENV
         echo "DOCTOOLS_IMAGE_VERSION=${DOCTOOLS_IMAGE_VERSION:=latest}" >> $GITHUB_ENV
     - name: Build doc site
+      shell: sh
+      run: |
+        docker run --rm \
+        --env-file ./.env \
+        -v ${PWD}:/workspace/ \
+        -w /workspace/ \
+        ghcr.io/consensys/doctools-builder:latest \
+        build -s
 #      uses: docker://ghcr.io/consensys/doctools-builder:${{ env.DOCTOOLS_IMAGE_VERSION }}
-      uses: docker://ghcr.io/consensys/doctools-builder:latest
-      with:
-        args: "build -s"
+#      uses: docker://ghcr.io/consensys/doctools-builder:latest
+#      with:
+#        args: "build -s"
