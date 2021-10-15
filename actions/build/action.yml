@@ -6,17 +6,25 @@ inputs:
     description: 'url to be used as base-ref for all contents and links'
     required: true
   VERSION:
-    description: 'doc version'
-    required: false
-    default: latest
+    description: 'doc version to build'
+    required: true
 
 runs:
   using: "composite"
   steps:
+    - name: set environment vars from .env file
+      uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
+      with:
+        env-file: '.env'
     - name: Set SITE_URL env vars
       shell: sh
       run: |
         echo "SITE_URL=${{ inputs.SITE_URL }}" >> $GITHUB_ENV
         echo "VERSION=${{ inputs.VERSION }}" >> $GITHUB_ENV
+        echo "DOCTOOLS_IMAGE_VERSION=${DOCTOOLS_IMAGE_VERSION:=latest}" >> $GITHUB_ENV
     - name: Build doc site
-      uses: ConsenSys/doctools.action-builder@main
+      uses: docker://ghcr.io/consensys/doctools-builder:${{ env.DOCTOOLS_IMAGE_VERSION }}
+      with:
+        args:
+          - "build"
+          - "-s"
