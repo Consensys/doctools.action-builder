@@ -5,7 +5,6 @@ inputs:
   VERSION:
     description: 'name for version to publish'
     required: true
-    default: latest
   AWS_ACCESS_KEY_ID:
     description: 'AWS secrets id'
     required: true
