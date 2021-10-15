@@ -16,22 +16,14 @@ runs:
       uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
       with:
         env-file: '.env'
-    - name: Set SITE_URL env vars
-      shell: sh
-      run: |
-        echo "SITE_URL=${{ inputs.SITE_URL }}" >> $GITHUB_ENV
-        echo "VERSION=${{ inputs.VERSION }}" >> $GITHUB_ENV
-        echo "DOCTOOLS_IMAGE_VERSION=${DOCTOOLS_IMAGE_VERSION:=latest}" >> $GITHUB_ENV
     - name: Build doc site
       shell: sh
       run: |
+        SITE_URL=${{ inputs.SITE_URL }}
+        VERSION=${{ inputs.VERSION }}
         docker run --rm \
         --env-file ./.env \
         -v ${PWD}:/workspace/ \
         -w /workspace/ \
-        ghcr.io/consensys/doctools-builder:latest \
+        ghcr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION:=latest} \
         build -s
-#      uses: docker://ghcr.io/consensys/doctools-builder:${{ env.DOCTOOLS_IMAGE_VERSION }}
-#      uses: docker://ghcr.io/consensys/doctools-builder:latest
-#      with:
-#        args: "build -s"
