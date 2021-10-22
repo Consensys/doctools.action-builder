@@ -10,6 +10,10 @@
   display: none
 }
 
+.md-footer {
+  margin-top: 0 !important;
+}
+
 @media screen and (min-width: 60em) {
   .md-sidebar--secondary {
     display: none
@@ -91,7 +95,9 @@
   linear-gradient(
     to bottom,
     var(--md-primary-fg-color),
-    #fff 100%
+    #fff 96%,
+    var(--md-primary-fg-color) 97%,
+    var(--md-primary-fg-color)
   );
   --mdx-hero-color: var(--md-footer-bg-color);
 }

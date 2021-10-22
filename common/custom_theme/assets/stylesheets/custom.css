@@ -54,11 +54,11 @@
 }
 
 [data-md-color-scheme="consensys"] {
-  --md-primary-fg-color:        #2C56DD;
+  --md-primary-fg-color: #2C56DD;
   --md-primary-fg-color--light: #ABBBF1;
   --md-primary-fg-color--dark:  #000;
   --md-default-bg-color: #fff;
-  --md-footer-bg-color: rgb(33 63 164);
+  --md-footer-bg-color: #213fa4;
 }
 
 [data-md-color-scheme="consensys-dark"] {
