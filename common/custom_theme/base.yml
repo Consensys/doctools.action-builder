@@ -77,7 +77,9 @@ extra_css:
   - https://fonts.googleapis.com/icon?family=Material+Icons
 extra_javascript:
   - assets/javascripts/version.js
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+  - assets/javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - assets/javascripts/accessiBe.js
 
 markdown_extensions:
@@ -95,7 +97,8 @@ markdown_extensions:
   - def_list
   - attr_list
   - abbr
-  - pymdownx.arithmatex
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.keys
@@ -114,6 +117,8 @@ markdown_extensions:
   - pymdownx.tilde
   - meta
   - smarty
+  - plantuml_markdown:
+      server: http://www.plantuml.com/plantuml
 
 plugins:
   search:
