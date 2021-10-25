@@ -7,63 +7,30 @@ Consensys branded and homogeneous documentation.
 
 ## Github Action
 
-The Github action hosted in the repository provides a way to build and publish static documentation
+The Github actions hosted in the repository provides a way to build and publish static documentation
 site using the common template.
 
 ### Example usage
 
-```yaml
-      - uses: Consensys/doctool-action-builder@main
-        name: "Build the doc"
-```
+See [Github Actions Workflow on the Template doc site repository](https://github.com/ConsenSys/doctools.template-site/tree/main/.github/workflows).
 
 ## `doctools` Docker image
 
-The Doctools Docker image is built from this repository and is used in the Github Action.
+The Doctools Docker image is built from this repository and is used in the Github Actions.
 
-It is also made to eas doc preview and local development.
+The image is hosted on [Consensys Github Container Registry (ghcr)](https://github.com/ConsenSys/doctools.action-builder/pkgs/container/doctools-builder).
+
+It is also made to ease doc preview and local development.
 Documentation contributors do not have to install and configure Python, Node.Js and other tools locally
 to preview and test their doc work. Docker is the only required tool.
 
-Using the Docker Image also enables to ensure that it will build everywhere in the same way. So what you build locally will be exactly the same in the final hosted site.
+Using the Docker Image also enables to ensure that it will build everywhere in the same way.
+What you build locally will be exactly the same in the final hosted site.
+
+## Using the Docker image for doc site preview
+
+See [Doctools preview documentation](https://consensys.net/docs/doctools/en/latest/howto/preview_the_doc_site/)
 
 ## Using the Docker image for template development
 
-This process is not for regular users who only want to preview their doc site.
-If you want to preview, please refer to the Doctools doc site.
-
-To be able to develop templates, you will have to run that repos alongside the template repos.
-
-1. Clone the template repository from [https://github.com/ConsenSys/doctools.template-site.git](https://github.com/ConsenSys/doctools.template-site.git) on your local machine.
-
-   ```bash
-    git clone https://github.com/ConsenSys/doctools.template-site.git
-    ```
-
-1. Clone the builder repository from [https://github.com/ConsenSys/doctools.action-builder.git](https://github.com/ConsenSys/doctools.action-builder.git) on your local machine at the same level as the template repos.
-
-    ```bash
-    git clone https://github.com/ConsenSys/doctools.action-builder.git
-    ```
-
-1. Resulting directory tree is:
-
-    ```text
-    base-dir
-    ├── doctools.template-site
-    └── doctools.action-builder
-    ```
-
-1. Pull latest docker image
-
-    ```bash
-    docker pull ghcr.io/consensys/doctools-builder:latest
-    ```
-
-1. Run the Docker Compose service:
-
-   `cd` into the `doctools.template-site` dir and run:
-
-    ```bash
-    docker compose up -f docker-compose.dev.yml -d
-    ```
+See [Doctools developer documentation](https://consensys.net/docs/doctools/en/latest/howto/advanced/contributing/)
