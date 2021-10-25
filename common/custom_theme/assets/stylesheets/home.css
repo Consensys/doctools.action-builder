@@ -43,6 +43,10 @@
 }
 
 @media screen and (max-width: 29.9375em) {
+  .mdx-hero {
+    margin: 0 1em;
+  }
+
   .mdx-hero h1 {
     font-size: 1.4rem;
   }
@@ -54,6 +58,7 @@
   .mdx-hero {
     display: flex;
     align-items: stretch;
+    margin: 0 10em;
   }
   .mdx-hero__content {
     max-width: 24rem;
@@ -120,4 +125,8 @@
 
 .md-select__inner{
   color: var(--md-primary-bg-color);
+}
+
+.md-grid {
+  max-width: unset;
 }
