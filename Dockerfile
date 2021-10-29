@@ -11,3 +11,6 @@ COPY common common
 # Build doc by default
 ENTRYPOINT ["mkdocs"]
 CMD ["serve", "--dev-addr", "0.0.0.0:8000"]
+
+# Labels
+LABEL org.opencontainers.image.description="ConsenSys Doctools builder image. See usage on https://consensys.net/docs/doctools/en/latest/"
