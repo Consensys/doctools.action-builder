@@ -1,9 +1,9 @@
 FROM python:3.9-alpine
 
-RUN apk update
-RUN apk add rsync
-RUN apk add git
-RUN apk add nodejs npm
+RUN apk upgrade --update-cache -a && \
+    apk add --no-cache \
+    git \
+    nodejs
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt --no-cache-dir
 COPY common common
