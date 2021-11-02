@@ -32,8 +32,6 @@ extra:
     text: 'You are reading the development version of this documentation and
     some displayed features may not be available in the stable release.
     You can switch to stable version using the switch in the header.'
-  support:
-    company: !ENV [COMPANY ,'ConsenSys']
   analytics:
     provider: gtm
     gtmid: !ENV GTM_ID
