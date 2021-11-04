@@ -16,7 +16,7 @@
       triggerRadius: '50%',
       triggerPositionX: 'left',
       triggerPositionY: 'bottom',
-      triggerIcon: 'wheels',
+      triggerIcon: 'settings2',
       triggerSize: 'medium',
       triggerOffsetX: 20,
       triggerOffsetY: 20,
