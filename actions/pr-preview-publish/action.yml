@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 ---
 name: 'Build and publish PR preview'
 description: 'Composite action Build and publish PR preview doc site'

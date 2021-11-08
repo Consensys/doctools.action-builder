@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 ---
 name: 'Delete PR preview'
 description: 'Composite action to delete PR preview'

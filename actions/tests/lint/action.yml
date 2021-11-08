@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 ---
 name: 'lint all code'
 description: 'Composite action to lint all kind of files in doc'

@@ -27,7 +27,13 @@ jobs:
 
       - name: Build image
         shell: sh
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+        run: |
+          docker build . \
+          --tag $IMAGE_NAME \
+          --build-arg VERSION="${GITHUB_REF#refs/*/}" \
+          --build-arg REVISION="${GITHUB_SHA}" \
+          --build-arg GITHUB_WORKFLOW="${GITHUB_WORKFLOW}" \
+          --build-arg GITHUB_RUN_ID="${GITHUB_RUN_ID}"
 
       - name: Image minimal test
         shell: sh

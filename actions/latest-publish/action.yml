@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 ---
 name: 'Build and publish latest doc'
 description: 'Composite action to build and publish latest doc site'
@@ -24,14 +25,12 @@ runs:
     - name: Build doc
       uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
-        # TODO see if it's possible to use join() here
-        # https://docs.github.com/en/actions/learn-github-actions/expressions#join
-        SITE_URL: ${{ inputs.SITE_URL_BASE }}${{ env.PROJECT }}/${{ env.LANGUAGE }}/${{ env.LATEST_VERSION }}/
-        VERSION: ${{ env.LATEST_VERSION }}
+        SITE_URL: ${{ inputs.SITE_URL_BASE }}${{ env.PROJECT }}/${{ env.LANGUAGE }}/latest/
+        VERSION: latest
 
     - name: Publish to AWS
       uses: ConsenSys/doctools.action-builder/actions/publish-aws@main
       with:
-        VERSION: ${{ env.LATEST_VERSION }}
+        VERSION: latest
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
