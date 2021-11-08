@@ -2,10 +2,19 @@
 site_url: !ENV [SITE_URL, 'http://0.0.0.0:8000/']
 
 extra:
+  latest_version_warning: # a warning text that displays on the latest version.
+    text: 'You are reading the development version of this documentation and
+    some displayed features may not be available in the stable release.
+    You can switch to stable version using the switch in the header.'
   debug: !ENV [DEBUG , false]
   version:
     number: !ENV [VERSION ,'latest']
     switch: !ENV [VERSION_SWITCH , false]
+  analytics:
+    provider: gtm
+
+# TODO Add a version file path here to be used in version JS
+
 theme:
   name: material
   custom_dir: /common/custom_theme
