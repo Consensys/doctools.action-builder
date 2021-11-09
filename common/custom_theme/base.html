@@ -123,7 +123,8 @@
         </a>
       {% endif %}
     </div>
-    {% if self.announce() %}
+<!--  Announce start-->
+    {% if self.announce() and config.extra.announce %}
       <div data-md-component="announce">
           <aside class="md-banner md-announce">
             <div class="md-banner__inner md-announce__inner md-grid md-typeset">
@@ -132,6 +133,7 @@
           </aside>
       </div>
     {% endif %}
+  <!--  Announce end-->
     {% block header %}
       {% include "partials/header.html" %}
     {% endblock %}

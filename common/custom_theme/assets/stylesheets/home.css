@@ -58,10 +58,8 @@
   .mdx-hero {
     display: flex;
     align-items: stretch;
-    margin: 0 10em;
   }
   .mdx-hero__content {
-    max-width: 24rem;
     margin-top: 3.5rem;
     padding-bottom: 14vw;
   }
@@ -80,6 +78,7 @@
   margin-top: 0.5rem;
   margin-right: 0.5rem;
   color: var(--md-primary-bg-color);
+  border-radius: 0.5em;
 }
 .mdx-hero .md-button:focus, .mdx-hero .md-button:hover {
   color: var(--md-accent-bg-color);
@@ -90,6 +89,7 @@
   color: #894da8;
   background-color: var(--md-primary-bg-color);
   border-color: var(--md-primary-bg-color);
+  font-size: 1.2em;
 }
 
 [data-md-color-scheme="consensys"] {
@@ -106,7 +106,6 @@
 }
 
 [data-md-color-scheme="consensys-dark"] {
-  --md-default-bg-color: var(--md-footer-bg-color);
   --md-wave-background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' style='fill: rgba(0,0,0,0.87)' /></svg>") no-repeat bottom,
   linear-gradient(
     to bottom,
@@ -114,6 +113,7 @@
     var(--md-footer-bg-color) 100%
   );
   --mdx-hero-color: #fff;
+  --md-default-bg-color: rgb(2 2 5);
 }
 
 .mdx-hero .md-button:not(.md-button--primary) {
@@ -123,8 +123,4 @@
 
 .md-select__inner{
   color: var(--md-primary-bg-color);
-}
-
-.md-grid {
-  max-width: unset;
 }

@@ -81,13 +81,13 @@ plugins:
   search:
     lang: en # static as no other available for now
     separator: '[\s\-\.\_]+'
-    prebuild_index: true
+    prebuild_index: !ENV [PREBUILD_INDEX , true]
   markdownextradata: {}
-#  minify:
-#    minify_html: true
-#    minify_js: true
-#    htmlmin_opts:
-#      remove_comments: true
+  minify:
+    minify_html: !ENV [MINIFY , true]
+    minify_js: !ENV [MINIFY , true]
+    htmlmin_opts:
+      remove_comments: !ENV [MINIFY , true]
 # uncomment to exclude a folder in /docs from final render.
 # useful for include files
 #  - exclude:
