@@ -32,4 +32,4 @@ runs:
         -w /workspace/ \
         ghcr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION:=latest} \
         build -s \
-        --config-file /workspace/tests/mkdocs.yml
+        --config-file ${MKDOCS_CONFIG:-mkdocs.yml}
