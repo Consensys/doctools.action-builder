@@ -9,6 +9,10 @@ inputs:
   VERSION:
     description: 'doc version to build'
     required: true
+  ENV_FILE:
+    description: 'doc env file for mkdocs'
+    required: false
+    default: './.env'
 
 runs:
   using: "composite"
@@ -16,15 +20,16 @@ runs:
     - name: set environment vars from .env file
       uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
       with:
-        env-file: '.env'
+        env-file: ${{ inputs.ENV_FILE }}
     - name: Build doc site
       shell: sh
       run: |
         SITE_URL=${{ inputs.SITE_URL }}
         VERSION=${{ inputs.VERSION }}
         docker run --rm \
-        --env-file ./.env \
+        --env-file ${{ inputs.ENV_FILE }} \
         -v ${PWD}:/workspace/ \
         -w /workspace/ \
         ghcr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION:=latest} \
-        build -s
+        build -s \
+        --config-file /workspace/tests/mkdocs.yml

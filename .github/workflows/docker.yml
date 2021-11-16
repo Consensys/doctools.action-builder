@@ -37,7 +37,14 @@ jobs:
 
       - name: Image minimal test
         shell: sh
-        run: docker run --rm -v ${PWD}:/docs -w /docs $IMAGE_NAME build -s
+        run: |
+          docker run --rm \
+          --env-file ./tests/.env \
+          -v ${PWD}:/workspace \
+          -w /workspace \
+          $IMAGE_NAME \
+          build -s \
+          --config-file /workspace/tests/mkdocs.yml
 
       - name: Login to GitHub Container Registry
         #https://github.com/docker/login-action/releases/tag/v1.10.0
@@ -74,3 +81,4 @@ jobs:
         with:
           SITE_URL: 'https://consensys.net/docs/action-builder-test' #fake site, just testing
           VERSION: ${{ env.IMAGE_LATEST_TAG }}
+          ENV_FILE: tests/.env
