@@ -42,6 +42,22 @@
       </div>
     </div>
   </div>
+
+  {% if page.meta.profiles %}
+  <div class="md-grid md-typeset">
+    <div class="mdx-hero">
+      <div class="mdx-hero__content">
+        {% for profile in page.meta.profiles %}
+        <a href="{{ profile.link | url }}" title="{{ profile.title | e }}"
+           class="md-button md-button--primary md-profile">
+          {{ profile.title | e }}
+          <img src="{{ profile.image | url }}">
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
 </section>
 {% endblock %}
 
