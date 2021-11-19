@@ -24,9 +24,9 @@ runs:
     - name: Build doc site
       shell: sh
       run: |
-        SITE_URL=${{ inputs.SITE_URL }}
-        VERSION=${{ inputs.VERSION }}
         docker run --rm \
+        -e SITE_URL="${{ inputs.SITE_URL }}" \
+        -e VERSION="${{ inputs.VERSION }}" \
         --env-file ${{ inputs.ENV_FILE }} \
         -v ${PWD}:/workspace/ \
         -w /workspace/ \
