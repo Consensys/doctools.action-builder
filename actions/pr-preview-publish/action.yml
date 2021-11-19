@@ -3,14 +3,15 @@
 name: 'Build and publish PR preview'
 description: 'Composite action Build and publish PR preview doc site'
 
+inputs:
+  LANGUAGE:
+    description: 'doc language to build'
+    required: false
+    default: en
+
 runs:
   using: "composite"
   steps:
-    - name: set environment vars from .env file
-      uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
-      with:
-        env-file: '.env'
-
     - name: Get additional Github env vars
       uses: FranzDiebold/github-env-vars-action@b9b3a88cfa3ad9bde40c291143c28f918e2d1668 #v2.3.0
 
@@ -22,8 +23,9 @@ runs:
     - name: Build doc
       uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
-        SITE_URL: https://${{ env.CI_REPOSITORY_OWNER_SLUG }}.github.io/${{ env.CI_REPOSITORY_NAME }}/${{ env.PR_VERSION }}/
+        SITE_ROOT: https://${{ env.CI_REPOSITORY_OWNER_SLUG }}.github.io/${{ env.CI_REPOSITORY_NAME }}/
         VERSION: ${{ env.PR_VERSION }}
+        LANGUAGE: ${{ inputs.LANGUAGE }}
 
     - name: Deploy Preview
       uses: JamesIves/github-pages-deploy-action@0f24da7de3e7e135102609a4c9633b025be8411b #4.1.5

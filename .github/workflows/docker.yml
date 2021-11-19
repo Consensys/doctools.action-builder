@@ -79,6 +79,6 @@ jobs:
       - name: Test building doc using our action
         uses: ConsenSys/doctools.action-builder/actions/build@main
         with:
-          SITE_URL: 'https://consensys.net/docs/action-builder-test' #fake site, just testing
-          VERSION: ${{ env.IMAGE_LATEST_TAG }}
+          SITE_ROOT: 'https://example.org' #fake site, just testing but cannot be empty
           ENV_FILE: tests/.env
+          MKDOCS_CONFIG: /workspace/tests/mkdocs.yml

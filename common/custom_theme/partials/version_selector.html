@@ -2,7 +2,7 @@
 {% if config.extra.version and config.extra.version.number and config.extra.version.switch %}
   <script>
     // TODO Has to be targeting the root /docs/
-    const site_url = '{{config.site_url}}'
+    const site_root = '{{config.extra.site_root}}'
     const site_current_language = '{{config.theme.language}}';
     const site_current_version = '{{config.extra.version.number}}';
   </script>

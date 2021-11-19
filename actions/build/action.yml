@@ -3,33 +3,40 @@
 name: 'Build doc'
 description: 'Composite action to build doc site'
 inputs:
-  SITE_URL:
-    description: 'url to be used as base-ref for all contents and links'
+  SITE_ROOT: #example "https://consensys.net/docs/doctools/"
+    description: 'Hosting URL base, including project name. No lang. No version.'
     required: true
+  LANGUAGE:
+    description: 'doc language to build'
+    required: false
+    default: en
   VERSION:
     description: 'doc version to build'
-    required: true
+    required: false
+    default: latest
   ENV_FILE:
     description: 'doc env file for mkdocs'
     required: false
     default: './.env'
+  MKDOCS_CONFIG:
+    description: 'Path to the mkdocs.yml file. Default is [project root]/mkdocs.yml'
+    required: false
+    default: 'mkdocs.yml'
 
 runs:
   using: "composite"
   steps:
-    - name: set environment vars from .env file
-      uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
-      with:
-        env-file: ${{ inputs.ENV_FILE }}
     - name: Build doc site
       shell: sh
       run: |
         docker run --rm \
-        -e SITE_URL="${{ inputs.SITE_URL }}" \
+        -e SITE_ROOT="${{ inputs.SITE_ROOT }}" \
+        -e SITE_URL="${{ inputs.SITE_ROOT }}/${{ inputs.LANGUAGE }}/${{ inputs.VERSION }}/" \
         -e VERSION="${{ inputs.VERSION }}" \
+        -e LANGUAGE="${{ inputs.LANGUAGE }}" \
         --env-file ${{ inputs.ENV_FILE }} \
         -v ${PWD}:/workspace/ \
         -w /workspace/ \
         ghcr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION:=latest} \
         build -s \
-        --config-file ${MKDOCS_CONFIG:-mkdocs.yml}
+        --config-file ${{ inputs.MKDOCS_CONFIG }}

@@ -1,6 +1,6 @@
 // default version list in case of JSON loading issue
 let versions = ['latest'];
-const cleanSiteUrl = site_url.replace(/\/+$/i, '');
+const cleanSiteUrl = site_root.replace(/\/+$/i, '');
 
 // is the version passed as param the one displayed accoring to the url
 function isDisplayedVersion(version){

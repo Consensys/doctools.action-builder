@@ -9,19 +9,26 @@ inputs:
   AWS_SECRET_ACCESS_KEY:
     description: 'AWS secrets key'
     required: true
-  SITE_URL_BASE:
-    description: 'Hosting URL base'
+  SITE_ROOT:
+    description: 'Hosting URL base, including project name but no lang and version'
+    required: true
+  AWS_REGION:
+    description: 'region for S3'
+    required: true
+  AWS_S3_BUCKET:
+    description: 'bucket for S3'
+    required: true
+  PROJECT:
+    description: 'project name'
+    required: true
+  LANGUAGE:
+    description: 'doc language to build'
     required: false
-    default: "https://consensys.net/docs/"
+    default: en
 
 runs:
   using: "composite"
   steps:
-    - name: set environment vars from .env file
-      uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
-      with:
-        env-file: '.env'
-
     - name: Set TAG env vars
       shell: sh
       run: |
@@ -30,19 +37,28 @@ runs:
     - name: Build doc
       uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
-        SITE_URL: ${{ inputs.SITE_URL_BASE }}${{ env.PROJECT }}/${{ env.LANGUAGE }}/${{ env.TAG }}/
+        SITE_ROOT: ${{ inputs.SITE_ROOT }}
+        LANGUAGE: ${{ inputs.LANGUAGE }}
         VERSION: ${{ env.TAG }}
 
     - name: Publish stable version to AWS
       uses: ConsenSys/doctools.action-builder/actions/publish-aws@main
       with:
-        VERSION: stable
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ inputs.AWS_REGION }}
+        AWS_S3_BUCKET: ${{ inputs.AWS_S3_BUCKET }}
+        PROJECT: ${{ inputs.PROJECT }}
+        LANGUAGE: ${{ inputs.LANGUAGE }}
+        VERSION: stable
 
-    - name: Publish tag version to AWS
+    - name: Publish tagged version to AWS
       uses: ConsenSys/doctools.action-builder/actions/publish-aws@main
       with:
-        VERSION: ${{ env.TAG }}
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ inputs.AWS_REGION }}
+        AWS_S3_BUCKET: ${{ inputs.AWS_S3_BUCKET }}
+        PROJECT: ${{ inputs.PROJECT }}
+        LANGUAGE: ${{ inputs.LANGUAGE }}
+        VERSION: ${{ env.TAG }}

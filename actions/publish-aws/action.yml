@@ -3,18 +3,35 @@
 name: 'Publish to AWS'
 description: 'Composite action to publish site to AWS'
 inputs:
-  VERSION:
-    description: 'name for version to publish'
-    required: true
   AWS_ACCESS_KEY_ID:
     description: 'AWS secrets id'
     required: true
   AWS_SECRET_ACCESS_KEY:
     description: 'AWS secrets key'
     required: true
+  AWS_REGION:
+    description: 'region for S3'
+    required: true
+  AWS_S3_BUCKET:
+    description: 'bucket for S3'
+    required: true
+  PROJECT:
+    description: 'project name'
+    required: true
+  SOURCE_DIR:
+    description: 'doc build dir'
+    required: false
+    default: 'site'
+  LANGUAGE:
+    description: 'language for version to publish'
+    required: false
+    default: 'en'
+  VERSION:
+    description: 'name for version to publish'
+    required: true
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Upload to AWS
       uses: jakejarvis/s3-sync-action@be0c4ab89158cac4278689ebedd8407dd5f35a83 #0.5.1
@@ -23,7 +40,7 @@ runs:
       env:
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
-        AWS_S3_BUCKET: ${{ env.AWS_S3_BUCKET  }}
-        AWS_REGION: ${{ env.AWS_REGION }}
-        SOURCE_DIR: ${{ env.SOURCE_DIR }}
-        DEST_DIR: ${{ env.PROJECT }}/${{ env.LANGUAGE }}/${{ inputs.VERSION }}/
+        AWS_S3_BUCKET: ${{ inputs.AWS_S3_BUCKET  }}
+        AWS_REGION: ${{ inputs.AWS_REGION }}
+        SOURCE_DIR: ${{ inputs.SOURCE_DIR }}
+        DEST_DIR: ${{ inputs.PROJECT }}/${{ inputs.LANGUAGE }}/${{ inputs.VERSION }}/
