@@ -59,6 +59,7 @@
   --md-primary-fg-color--dark:  #000;
   --md-default-bg-color: #fff;
   --md-footer-bg-color: #213fa4;
+  --mdx-version-bg-color: rgba(33, 63, 164, 0.9);
 }
 
 [data-md-color-scheme="consensys-dark"] {
@@ -78,6 +79,7 @@
   --md-code-hl-constant-color: #8268ff;
   --md-code-hl-keyword-color: #5490ff;
   --md-code-hl-string-color: #2fde18;
+  --mdx-version-bg-color: rgba(33, 63, 164, 0.9);
 }
 
 .md-selected_language_item{

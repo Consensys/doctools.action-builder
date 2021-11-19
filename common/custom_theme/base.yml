@@ -2,14 +2,14 @@
 site_url: !ENV [SITE_URL, 'http://0.0.0.0:8000/']
 
 extra:
+  debug: !ENV [DEBUG , false]
   latest_version_warning: # a warning text that displays on the latest version.
     text: 'You are reading the development version of this documentation and
     some displayed features may not be available in the stable release.
     You can switch to stable version using the switch in the header.'
-  debug: !ENV [DEBUG , false]
   version:
     number: !ENV [VERSION ,'latest']
-    switch: !ENV [VERSION_SWITCH , false]
+    switch: false
   analytics:
     provider: gtm
 

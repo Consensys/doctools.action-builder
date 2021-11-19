@@ -1,11 +1,3 @@
-[data-md-color-scheme="consensys"] {
-  --mdx-version-bg-color: rgba(33, 63, 164, 0.9);
-}
-
-[data-md-color-scheme="consensys-dark"] {
-  --mdx-version-bg-color: rgba(33, 63, 164, 0.9);
-}
-
 #__version{
   border: 0;
   background: var(--mdx-version-bg-color);

@@ -1,6 +1,6 @@
 // default version list in case of JSON loading issue
 let versions = ['latest'];
-const DEFAULT_VERSION = Object.keys(versions)[0];
+const cleanSiteUrl = site_url.replace(/\/+$/i, '');
 
 // is the version passed as param the one displayed accoring to the url
 function isDisplayedVersion(version){
@@ -11,12 +11,10 @@ function isDisplayedVersion(version){
 function updateVersionsDropDown(versions, currentLanguage, currentVersion){
   $("#__version").empty();
   $.each( versions.versions[currentLanguage], function( index, version ) {
-    // var item = $( `<a class="version-number-item dropdown-item" href="#${version}">${version}${sourceText}</a>" `);
     var item = $( `<option value="${version}">${version}</option>" `);
 
     if(isDisplayedVersion(version)){
       item.attr("selected","selected");
-      // $('#dropdownMenuButton').text(`${version}${sourceText}`);
       document.title = `${document.title} - ${version}`;
     }
 
@@ -25,10 +23,10 @@ function updateVersionsDropDown(versions, currentLanguage, currentVersion){
 }
 
 // set the global versions value from the Json file,
-// update spec page on completions
+// update dropdown on completions
 function getVersionsFromJsonFile(){
   $.ajaxSetup({ cache: false });
-  $.getJSON( site_url + "versions.json" , function( data ) {
+  $.getJSON( `${cleanSiteUrl}/versions.json` , function( data ) {
     if(!jQuery.isEmptyObject(data)){ versions = data; }
   })
   .always(
@@ -45,6 +43,6 @@ $(function() {
 $('#__version').change(function(){
   const targetVersion = $(this).val();
   console.log(targetVersion);
-  window.location.href = site_url + "/" + site_current_language + "/" + targetVersion;
+  window.location.href = cleanSiteUrl + "/" + site_current_language + "/" + targetVersion;
   return false
 });
