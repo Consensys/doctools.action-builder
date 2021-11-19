@@ -31,7 +31,7 @@
         <img src="{{ 'assets/images/illustration.png' | url }}" alt="" draggable="false">
       </div>
       <div class="mdx-hero__content">
-        <h1>{{ page.meta.title }}</h1>
+        <h1 translate="no">{{ page.meta.title }}</h1>
         <p>{{ page.meta.description }}</p>
         {% for link in page.meta.links %}
         <a href="{{ link.link | url }}" title="{{ link.title | e }}"

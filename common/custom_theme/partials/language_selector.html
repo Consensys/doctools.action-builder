@@ -40,7 +40,7 @@
               <a
                 href="{{ config.site_url + current_language }}"
                 hreflang="{{ config.site_url + current_language }}"
-                class="md-select__link"
+                class="md-select__link" translate="no"
               >
                 {{languages_list[current_language] | e }}
               </a>
@@ -52,7 +52,7 @@
                 <a
                   href="{{ config.site_url + lang_code }}"
                   hreflang="{{ config.site_url + lang_code }}"
-                  class="md-select__link"
+                  class="md-select__link" translate="no"
                 >
                   {{ lang_name | e }}
                 </a>
