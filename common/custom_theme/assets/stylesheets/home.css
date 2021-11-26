@@ -69,8 +69,8 @@
   }
   .mdx-hero__image {
     order: 1;
-    width: 20rem;
-    transform: translateX(4rem);
+    margin-left: 2rem;
+    padding-top: 2rem;
   }
 }
 
