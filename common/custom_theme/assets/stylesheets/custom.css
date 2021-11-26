@@ -1,3 +1,37 @@
+.md-announce a {
+  color: var(--md-footer-fg-color);
+}
+
+.md-announce a[href^="http"]:after {
+  font-family: "Material Icons", monospace;
+  font-weight: 900;
+  font-size: small;
+  content: " \e89e";
+}
+
+.md-announce a[href^="http"]:after {
+  font-family: "Material Icons", monospace;
+  font-weight: 900;
+  font-size: small;
+  content: " \e89e";
+}
+
+.md-header__button.md-logo img, .md-header__button.md-logo svg {
+  width: unset;
+}
+
+.md-nav__title .md-nav__button.md-logo img, .md-nav__title .md-nav__button.md-logo svg {
+  width: 6rem;
+}
+
+.md-nav--primary .md-nav__title {
+  font-weight: lighter;
+  height: unset;
+  font-size: 0.9em;
+  line-height: unset;
+  white-space: unset;
+}
+
 .md-nav--secondary .md-nav__item .md-nav__item a.md-nav__link {
   font-weight: normal;
   font-size: inherit;
@@ -12,7 +46,7 @@
 }
 
 .md-content a[href^="http"]:not(.md-content__icon):after {
-  font-family: "Material Icons";
+  font-family: "Material Icons", monospace;
   font-weight: 900;
   font-size: small;
   content: " \e89e";
@@ -21,10 +55,6 @@
 .md-source-date {
   font-style: italic;
 }
-
-/*.md-sidebar__scrollwrap{*/
-/*  scroll-snap-type: none !important;*/
-/*}*/
 
 :root {
   --md-admonition-icon--critical: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M13 14h-2V9h2m0 9h-2v-2h2M1 21h22L12 2 1 21z'/></svg>")

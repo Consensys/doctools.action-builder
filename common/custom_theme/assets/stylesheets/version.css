@@ -1,6 +1,12 @@
 #__version{
   border: 0;
-  background: var(--mdx-version-bg-color);
+  color: var(--md-primary-bg-color);
   padding: 0.5em;
   border-radius: 0.1em;
+}
+
+@media screen and (min-width: 76.25em) {
+  #__version{
+    background: var(--mdx-version-bg-color);
+  }
 }

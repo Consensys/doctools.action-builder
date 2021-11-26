@@ -28,7 +28,7 @@
   <div class="md-grid md-typeset">
     <div class="mdx-hero">
       <div class="mdx-hero__image">
-        <img src="{{ 'assets/images/illustration.png' | url }}" alt="" draggable="false">
+        <img src="{{ 'assets/images/illustration.png' | url }}" alt="illustration" draggable="false">
       </div>
       <div class="mdx-hero__content">
         <h1 translate="no">{{ page.meta.title }}</h1>
@@ -46,13 +46,18 @@
   {% if page.meta.profiles %}
   <div class="md-grid md-typeset">
     <div class="mdx-hero">
-      <div class="mdx-hero__content">
+      <div class="mdx-hero__profiles">
         {% for profile in page.meta.profiles %}
-        <a href="{{ profile.link | url }}" title="{{ profile.title | e }}"
-           class="md-button md-button--primary md-profile">
-          {{ profile.title | e }}
-          <img src="{{ profile.image | url }}">
-        </a>
+          <div class="md-profile">
+            <a href="{{ profile.link | url }}" title="{{ profile.title | e }}"
+               class="md-button md-button--primary">
+              {{ profile.title | e }}
+              {% if profile.text %}
+              <p> {{ profile.text | e }}</p>
+              {% endif %}
+              <img src="{{ profile.image | url }}">
+            </a>
+          </div>
         {% endfor %}
       </div>
     </div>
