@@ -57,7 +57,8 @@
 }
 
 :root {
-  --md-admonition-icon--critical: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M13 14h-2V9h2m0 9h-2v-2h2M1 21h22L12 2 1 21z'/></svg>")
+  --md-admonition-icon--critical: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M13 14h-2V9h2m0 9h-2v-2h2M1 21h22L12 2 1 21z'/></svg>");
+  --mdx-version-bg-color: rgba(33, 63, 164, 0.9);
 }
 
 .md-typeset .admonition.critical,
@@ -89,7 +90,6 @@
   --md-primary-fg-color--dark:  #000;
   --md-default-bg-color: #fff;
   --md-footer-bg-color: #213fa4;
-  --mdx-version-bg-color: rgba(33, 63, 164, 0.9);
 }
 
 [data-md-color-scheme="consensys-dark"] {
@@ -109,11 +109,14 @@
   --md-code-hl-constant-color: #8268ff;
   --md-code-hl-keyword-color: #5490ff;
   --md-code-hl-string-color: #2fde18;
-  --mdx-version-bg-color: rgba(33, 63, 164, 0.9);
 }
 
 .md-selected_language_item{
   border: solid;
   border-width: thin;
   border-radius: 0.1em;
+}
+
+article img {
+  background-color: #ffffff80;
 }
