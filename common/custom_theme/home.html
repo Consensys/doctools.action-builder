@@ -23,7 +23,6 @@
 {% extends "main.html" %}
 {% block tabs %}
 {{ super() }}
-<link rel="stylesheet" href="{{ 'assets/stylesheets/home.css' | url }}">
 <section class="mdx-container">
   <div class="md-grid md-typeset">
     <div class="mdx-hero">
@@ -72,3 +71,8 @@
 
 {% block content %}{% endblock %}
 {% block footer %}{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ 'assets/stylesheets/home.css' | url }}">
+{% endblock %}
