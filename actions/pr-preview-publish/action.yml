@@ -28,7 +28,7 @@ runs:
         LANGUAGE: ${{ inputs.LANGUAGE }}
 
     - name: Deploy Preview
-      uses: JamesIves/github-pages-deploy-action@4
+      uses: JamesIves/github-pages-deploy-action@6ce741f5d4e01e15f9ea5ec96df1a43f522c330f #4.1.7
       with:
         branch: gh-pages # The branch the action should deploy to.
         folder: site # The folder the action should deploy.
@@ -37,7 +37,7 @@ runs:
         single-commit: true
 
     - name: Add comment with link to preview doc
-      uses: marocchino/sticky-pull-request-comment@v2
+      uses: marocchino/sticky-pull-request-comment@39c5b5dc7717447d0cba270cd115037d32d28443 #v2.2.0
       with:
         header: preview
         recreate: true

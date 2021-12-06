@@ -25,7 +25,7 @@ runs:
         git push
 
     - name: Remove comment to preview doc link
-      uses: marocchino/sticky-pull-request-comment@v2
+      uses: marocchino/sticky-pull-request-comment@39c5b5dc7717447d0cba270cd115037d32d28443 #v2.2.0
       with:
         header: preview
         delete: true
