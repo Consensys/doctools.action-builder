@@ -78,7 +78,7 @@
 
 .mdx-hero__content p {
   color: var(--md-primary-bg-color);
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 @media screen and (max-width: 29.9375em) {
@@ -151,8 +151,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
   }
 
   .md-profile{
