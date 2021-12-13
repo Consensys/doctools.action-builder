@@ -41,6 +41,10 @@
     font-weight: bolder;
 }
 
+.md-nav__source {
+  background-color: var(--md-footer-bg-color);
+}
+
 .md-footer {
   margin-top: 3em;
 }
