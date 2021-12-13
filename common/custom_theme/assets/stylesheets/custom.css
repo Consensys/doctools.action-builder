@@ -120,3 +120,7 @@
 article img {
   background-color: #ffffff80;
 }
+
+.md-grid {
+  max-width: 95%;
+}
