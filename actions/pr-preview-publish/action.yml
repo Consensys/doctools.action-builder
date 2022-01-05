@@ -15,16 +15,16 @@ runs:
     - name: Get additional Github env vars
       uses: FranzDiebold/github-env-vars-action@b9b3a88cfa3ad9bde40c291143c28f918e2d1668 #v2.3.0
 
-    - name: Set PR_VERSION env vars
+    - name: generate PR slug
       shell: sh
-      run: |
-        echo "PR_VERSION=PR-${{ github.event.number }}" >> $GITHUB_ENV
+      id: generate_pr_slug
+      run: echo "::set-output name=slug::PR-${{ github.event.number }}"
 
     - name: Build doc
       uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
         SITE_ROOT: https://${{ env.CI_REPOSITORY_OWNER_SLUG }}.github.io/${{ env.CI_REPOSITORY_NAME }}/
-        VERSION: ${{ env.PR_VERSION }}
+        VERSION: ${{ steps.generate_pr_slug.outputs.slug }}
         LANGUAGE: ${{ inputs.LANGUAGE }}
 
     - name: Deploy Preview
@@ -32,8 +32,8 @@ runs:
       with:
         branch: gh-pages # The branch the action should deploy to.
         folder: site # The folder the action should deploy.
-        target-folder: ${{ env.PR_VERSION }}
-        commit-message: Preview for ${{ env.PR_VERSION }}
+        target-folder: ${{ steps.generate_pr_slug.outputs.slug }}
+        commit-message: Preview for ${{ steps.generate_pr_slug.outputs.slug }}
         single-commit: true
 
     - name: Add comment with link to preview doc
@@ -42,4 +42,4 @@ runs:
         header: preview
         recreate: true
         message: |
-          [Doc preview for this PR #${{ github.event.number }} is available](https://${{ env.CI_REPOSITORY_OWNER }}.github.io/${{ env.CI_REPOSITORY_NAME }}/${{ env.PR_VERSION }})
+          [Doc preview for this PR #${{ github.event.number }} is available](https://${{ env.CI_REPOSITORY_OWNER }}.github.io/${{ env.CI_REPOSITORY_NAME }}/${{ steps.generate_pr_slug.outputs.slug }})

@@ -22,6 +22,10 @@ inputs:
     description: 'Path to the mkdocs.yml file. Default is [project root]/mkdocs.yml'
     required: false
     default: 'mkdocs.yml'
+  OUTPUT_DIR:
+    description: 'Path to the output directory. Default is site'
+    required: false
+    default: 'site'
 
 runs:
   using: "composite"
@@ -39,4 +43,5 @@ runs:
         -w /workspace/ \
         ghcr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION:=latest} \
         build -s \
+        -d ${{ inputs.OUTPUT_DIR }} \
         --config-file ${{ inputs.MKDOCS_CONFIG }}

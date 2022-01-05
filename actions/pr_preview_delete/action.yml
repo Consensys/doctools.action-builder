@@ -6,15 +6,15 @@ description: 'Composite action to delete PR preview'
 runs:
   using: "composite"
   steps:
-    - name: Set additional env vars
+    - name: generate PR slug
       shell: sh
-      run: |
-        echo "PR_VERSION=PR-${{ github.event.number }}" >> $GITHUB_ENV
+      id: generate_pr_slug
+      run: echo "::set-output name=slug::PR-${{ github.event.number }}"
 
     - name: Delete preview
       shell: sh
       run: |
-        rm -Rf "${{ env.PR_VERSION }}"
+        rm -Rf "${{ steps.generate_pr_slug.outputs.slug }}"
 
     - name: Commit and push to gh-pages
       shell: sh
