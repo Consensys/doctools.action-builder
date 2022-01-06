@@ -12,6 +12,7 @@ RUN apk upgrade --update-cache -a && \
     nodejs
 COPY requirements.txt requirements.txt
 COPY mkdocs-macro-pluglets mkdocs-macro-pluglets
+RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip install -r requirements.txt --no-cache-dir
 COPY common common
 
