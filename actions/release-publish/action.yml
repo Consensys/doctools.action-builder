@@ -29,17 +29,17 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Set TAG env vars
+    - name: Set TAG
       shell: sh
-      run: |
-        echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      id: generate_tag
+      run: echo "::set-output name=tag::${GITHUB_REF#refs/*/}"
 
     - name: Build doc
       uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
         SITE_ROOT: ${{ inputs.SITE_ROOT }}
         LANGUAGE: ${{ inputs.LANGUAGE }}
-        VERSION: ${{ env.TAG }}
+        VERSION: ${{ steps.generate_tag.outputs.tag }}
 
     - name: Publish stable version to AWS
       uses: ConsenSys/doctools.action-builder/actions/publish-aws@main
@@ -61,4 +61,4 @@ runs:
         AWS_S3_BUCKET: ${{ inputs.AWS_S3_BUCKET }}
         PROJECT: ${{ inputs.PROJECT }}
         LANGUAGE: ${{ inputs.LANGUAGE }}
-        VERSION: ${{ env.TAG }}
+        VERSION: ${{ steps.generate_tag.outputs.tag }}

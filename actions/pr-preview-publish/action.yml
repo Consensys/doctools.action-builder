@@ -12,7 +12,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Get additional Github env vars
+    - name: Get additional Github env vars # vars from Github env, can not be modified by users
       uses: FranzDiebold/github-env-vars-action@b9b3a88cfa3ad9bde40c291143c28f918e2d1668 #v2.3.0
 
     - name: generate PR slug

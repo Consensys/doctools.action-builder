@@ -25,12 +25,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set image ID and TAG
+        shell: sh
+        id: generate_image_info
+        run: |
+          IMAGE_ID=$REGISTRY/${{ github.repository_owner }}/$IMAGE_NAME
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          # output image id
+          echo "::set-output name=id::$IMAGE_ID"
+          # output image tag
+          echo "::set-output name=tag::${GITHUB_REF#refs/*/}"
+
       - name: Build image
         shell: sh
         run: |
           docker build . \
           --tag $IMAGE_NAME \
-          --build-arg VERSION="${GITHUB_REF#refs/*/}" \
+          --build-arg VERSION="${{ steps.generate_image_info.outputs.tag }}" \
           --build-arg REVISION="${GITHUB_SHA}" \
           --build-arg GITHUB_WORKFLOW="${GITHUB_WORKFLOW}" \
           --build-arg GITHUB_RUN_ID="${GITHUB_RUN_ID}"
@@ -39,7 +51,7 @@ jobs:
         shell: sh
         run: |
           docker run --rm \
-          --env-file ./tests/.env \
+          -e VERSION=test \
           -v ${PWD}:/workspace \
           -w /workspace \
           $IMAGE_NAME \
@@ -54,31 +66,21 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set image name
-        shell: sh
-        run: |
-          IMAGE_ID=$REGISTRY/${{ github.repository_owner }}/$IMAGE_NAME
-          # Change all uppercase to lowercase
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-          echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_ENV
-
       - name: Push latest
         shell: sh
         run: |
-          docker tag $IMAGE_NAME $IMAGE_ID:$IMAGE_LATEST_TAG
-          docker push $IMAGE_ID:$IMAGE_LATEST_TAG
+          docker tag $IMAGE_NAME ${{ steps.generate_image_info.outputs.id }}:$IMAGE_LATEST_TAG
+          docker push ${{ steps.generate_image_info.outputs.id }}:$IMAGE_LATEST_TAG
 
       - name: Push tagged release
         if: github.event_name == 'release' && github.event.action == 'published'
         shell: sh
         run: |
-          IMAGE_TAG=${GITHUB_REF#refs/*/}
-          docker tag $IMAGE_NAME $IMAGE_ID:$IMAGE_TAG
-          docker push $IMAGE_ID:$IMAGE_TAG
+          docker tag $IMAGE_NAME ${{ steps.generate_image_info.outputs.id }}:${{ steps.generate_image_info.outputs.tag }}
+          docker push ${{ steps.generate_image_info.outputs.id }}:${{ steps.generate_image_info.outputs.tag }}
 
       - name: Test building doc using our action
         uses: ConsenSys/doctools.action-builder/actions/build@main
         with:
           SITE_ROOT: 'https://example.org' #fake site, just testing but cannot be empty
-          ENV_FILE: tests/.env
           MKDOCS_CONFIG: /workspace/tests/mkdocs.yml

@@ -14,10 +14,6 @@ inputs:
     description: 'doc version to build'
     required: false
     default: latest
-  ENV_FILE:
-    description: 'doc env file for mkdocs'
-    required: false
-    default: './.env'
   MKDOCS_CONFIG:
     description: 'Path to the mkdocs.yml file. Default is [project root]/mkdocs.yml'
     required: false
@@ -26,6 +22,10 @@ inputs:
     description: 'Path to the output directory. Default is site'
     required: false
     default: 'site'
+  DOCTOOLS_IMAGE_VERSION:
+    description: 'Version of the image to use for building. Default is latest'
+    required: false
+    default: 'latest'
 
 runs:
   using: "composite"
@@ -38,10 +38,9 @@ runs:
         -e SITE_URL="${{ inputs.SITE_ROOT }}/${{ inputs.LANGUAGE }}/${{ inputs.VERSION }}/" \
         -e VERSION="${{ inputs.VERSION }}" \
         -e LANGUAGE="${{ inputs.LANGUAGE }}" \
-        --env-file ${{ inputs.ENV_FILE }} \
         -v ${PWD}:/workspace/ \
         -w /workspace/ \
-        ghcr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION:=latest} \
+        ghcr.io/consensys/doctools-builder:${{ inputs.DOCTOOLS_IMAGE_VERSION }} \
         build -s \
         -d ${{ inputs.OUTPUT_DIR }} \
         --config-file ${{ inputs.MKDOCS_CONFIG }}
