@@ -82,7 +82,7 @@ plugins:
   search:
     lang: en # static as no other available for now
     separator: '[\s\-\.\_]+'
-    prebuild_index: !ENV [PREBUILD_INDEX , true]
+    prebuild_index: !ENV [PREBUILD_INDEX , false]
   minify:
     minify_html: !ENV [MINIFY , true]
     minify_js: !ENV [MINIFY , true]
