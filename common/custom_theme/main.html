@@ -36,7 +36,14 @@
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"></script>
+  <script src="{{ 'assets/javascripts/version.js' | url }}"></script>
+  <script src="{{ 'assets/javascripts/mathjax.js' | url }}"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="{{ 'assets/javascripts/accessiBe.js' | url }}"></script>
+
   {{ super() }}
+
   {% if config.extra.debug %}
     {% include "partials/debug.html" %}
   {% endif %}
