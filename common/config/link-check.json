@@ -24,6 +24,9 @@
     },
     {
       "pattern": "^http(s)?://.+.zendesk.com"
+    },
+    {
+      "pattern": "^http(s)?://.+.etherscan.io"
     }
   ],
   "timeout": "30s",
