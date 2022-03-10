@@ -1,5 +1,4 @@
 .md-container {
-  background-image: var(--md-home-background-image);
   filter: invert(var(--md-container-background-image-invert));
 }
 
