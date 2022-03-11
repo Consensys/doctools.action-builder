@@ -27,3 +27,4 @@ runs:
         MARKDOWN_CONFIG_FILE: markdown.yml
         LOG_LEVEL: ERROR
         FILTER_REGEX_EXCLUDE: ./common
+        CSS_FILE_NAME: .stylelintrc.yaml
