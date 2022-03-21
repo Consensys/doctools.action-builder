@@ -16,7 +16,7 @@ runs:
       run: |
         rm -Rf "${{ steps.generate_pr_slug.outputs.slug }}"
 
-    - name: Commit and push to gh-pages
+    - name: Commit and push to pages current branch
       shell: sh
       run: |
         git config --global user.name 'github-actions[bot]'
