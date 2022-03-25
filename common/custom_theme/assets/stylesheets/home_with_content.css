@@ -1,17 +1,13 @@
-.md-container {
-  filter: invert(var(--md-container-background-image-invert));
-}
-
 [data-md-color-scheme="consensys"] {
-  --md-container-background-image-invert: 0;
+  --dt-md-container-background-image: var(--dt-background-image-light);
 }
 
 [data-md-color-scheme="consensys-dark"] {
-  --md-container-background-image-invert: 1;
+  --dt-md-container-background-image: var(--dt-background-image-dark);
 }
 
-.md-typeset {
-  filter: invert(var(--md-container-background-image-invert));
+.md-container {
+  background-image: var(--dt-md-container-background-image);
 }
 
 .md-typeset h1, h2 {
@@ -40,6 +36,7 @@
 .md-typeset .main_content_cta--container {
   margin-top: 3rem;
 }
+
 .md-typeset .main_content_cta {
   align-items: center;
   border-radius: 0.25rem;

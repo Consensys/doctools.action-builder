@@ -20,8 +20,13 @@
   <link rel="stylesheet" href="{{ 'assets/stylesheets/home_with_content.css' | url }}">
   {% if page.meta.background %}
     <style>
-      .md-container {
-        background-image: url({{ page.meta.background | url }});
+      :root {
+        {% if page.meta.background.light %}
+          --dt-background-image-light: url({{ '../../' + page.meta.background.light | url }});
+        {% endif %}
+        {% if page.meta.background.dark %}
+          --dt-background-image-dark: url({{ '../../' + page.meta.background.dark | url }});
+        {% endif %}
       }
     </style>
   {% endif %}
