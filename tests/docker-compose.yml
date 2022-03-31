@@ -1,0 +1,19 @@
+---
+version: '3.2'
+services:
+  mkdocs:
+    container_name: mkdocs-serve-builder-dev
+    ports:
+      - "0.0.0.0:8000:8000"
+    image: ghscr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION:-dev}
+    build:
+      context: ../
+    working_dir: /workspace/
+    command: ["serve", "--watch-theme" ,"--dev-addr", "0.0.0.0:8000"]
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+      - type: bind
+        source: ../common
+        target: /common
