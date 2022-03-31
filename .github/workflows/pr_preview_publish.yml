@@ -1,0 +1,63 @@
+---
+name: Publish PR preview
+
+on: [ pull_request_target ]
+
+env:
+  IMAGE_NAME: doctools-builder-test
+
+jobs:
+  deploy:
+    name: Build and publish PR preview
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout code from repos
+        uses: actions/checkout@v2
+        with:
+          ref: refs/pull/${{ github.event.number }}/merge # required to pull the PR code instead of the main one
+          fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
+
+      - name: Get additional Github env vars # vars from Github env, can not be modified by users
+        uses: FranzDiebold/github-env-vars-action@b9b3a88cfa3ad9bde40c291143c28f918e2d1668 #v2.3.0
+
+      - name: Generate PR slug
+        shell: sh
+        id: generate_pr_slug
+        run: echo "::set-output name=slug::PR-${{ github.event.number }}"
+
+      - name: Build test image
+        shell: sh
+        run: |
+          docker build . --tag $IMAGE_NAME
+
+      - name: Build preview site
+        shell: sh
+        run: |
+          docker run --rm \
+          -e VERSION=test \
+          -v ${PWD}:/workspace \
+          -w /workspace \
+          $IMAGE_NAME \
+          build -s \
+          --config-file /workspace/tests/mkdocs.yml
+
+      - name: Deploy Preview
+        uses: JamesIves/github-pages-deploy-action@6ce741f5d4e01e15f9ea5ec96df1a43f522c330f #4.1.7
+        with:
+          branch: pr-preview # The branch the action should deploy to.
+          folder: tests/site # The folder the action should deploy.
+          target-folder: ${{ steps.generate_pr_slug.outputs.slug }}
+          commit-message: Preview for ${{ steps.generate_pr_slug.outputs.slug }}
+          single-commit: true
+
+      - name: Add comment with link to preview doc
+        uses: marocchino/sticky-pull-request-comment@39c5b5dc7717447d0cba270cd115037d32d28443 #v2.2.0
+        with:
+          header: preview
+          recreate: true
+          message: |
+            [Doc preview for this PR #${{ github.event.number }} is available](https://${{ env.CI_REPOSITORY_OWNER }}.github.io/${{ env.CI_REPOSITORY_NAME }}/${{ steps.generate_pr_slug.outputs.slug }})
