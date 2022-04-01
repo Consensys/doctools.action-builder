@@ -1,8 +1,8 @@
 /*Theme colours*/
 
-.md-header {
-  /*This prevents the header to make the api position wrong when you clic a link*/
-  position: unset;
+.md-main__inner {
+  margin: 0;
+  max-width: 100%;
 }
 
 #redoc-container .api-content {
