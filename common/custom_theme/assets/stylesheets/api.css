@@ -44,6 +44,10 @@
   height: 0;
 }
 
-:root {
-  --dt-api-nav-bg-color: rgba(44, 86, 221, 0.1);
+[data-md-color-scheme="consensys"] {
+  --dt-api-nav-bg-color: rgb(234, 241, 253);
+}
+
+[data-md-color-scheme="consensys-dark"] {
+  --dt-api-nav-bg-color: rgb(14, 34, 93);
 }

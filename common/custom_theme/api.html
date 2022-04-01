@@ -3,6 +3,7 @@
 
 {% block main %}
 <div id="redoc-container"></div>
+{{ super() }}
 {% endblock %}
 
 {% block styles %}
@@ -16,3 +17,5 @@
 <script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"></script>
 <script src="{{ 'assets/javascripts/api.js' | url }}"></script>
 {% endblock %}
+
+{% block content %}{% endblock %}
