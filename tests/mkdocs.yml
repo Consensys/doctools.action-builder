@@ -1,6 +1,9 @@
 INHERIT: ../common/custom_theme/base.yml
 site_name: Sample
 
+extra:
+  announce: "This is the test doc for the build image"
+
 theme:
   palette:
     - media: "(prefers-color-scheme: light)"
