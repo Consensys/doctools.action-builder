@@ -18,7 +18,7 @@ function redocInitDone(){
 Redoc.init(
     specurl,
     {
-      scrollYOffset:'header',
+      scrollYOffset:$('header').height(),
       theme: getTheme(document.body) },
     document.getElementById('redoc-container'),
     redocInitDone
@@ -30,7 +30,7 @@ var observer = new MutationObserver(function(mutations) {
     if (mutation.type === "attributes") {
       Redoc.init(
           specurl,
-          { scrollYOffset:'header',
+          { scrollYOffset:$('header').height(),
             theme: getTheme(mutation.target) },
           document.getElementById('redoc-container'),
           redocInitDone
