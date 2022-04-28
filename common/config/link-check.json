@@ -27,6 +27,9 @@
     },
     {
       "pattern": "^http(s)?://.+.etherscan.io"
+    },
+    {
+      "pattern": "^http(s)?://help.figma.com"
     }
   ],
   "timeout": "30s",
