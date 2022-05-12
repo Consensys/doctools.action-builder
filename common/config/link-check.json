@@ -30,6 +30,9 @@
     },
     {
       "pattern": "^http(s)?://help.figma.com"
+    },
+    {
+      "pattern": "^http(s)?://docs.github.com"
     }
   ],
   "timeout": "30s",
