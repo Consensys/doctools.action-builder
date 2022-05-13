@@ -15,6 +15,9 @@ jobs:
       pull-requests: write
 
     steps:
+      - run: |
+          sudo rm /etc/docker/daemon.json
+          sudo systemctl restart docker
       - name: Checkout code from repos
         uses: actions/checkout@v2
         with:
