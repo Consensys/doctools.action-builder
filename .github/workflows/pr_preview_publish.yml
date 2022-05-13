@@ -1,7 +1,7 @@
 ---
 name: Publish PR preview
 
-on: [ pull_request_target ]
+on: [ pull_request ]
 
 env:
   IMAGE_NAME: doctools-builder-test
@@ -9,7 +9,7 @@ env:
 jobs:
   deploy:
     name: Build and publish PR preview
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     permissions:
       contents: write
       pull-requests: write
