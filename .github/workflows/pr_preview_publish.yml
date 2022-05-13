@@ -9,7 +9,7 @@ env:
 jobs:
   deploy:
     name: Build and publish PR preview
-    runs-on: macos-latest
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
       pull-requests: write
