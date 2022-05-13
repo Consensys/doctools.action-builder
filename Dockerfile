@@ -1,19 +1,21 @@
 # SPDX-License-Identifier: Apache-2.0
-FROM python:3.9-alpine
+FROM alpine:3.15
 
 ARG VERSION="local"
 ARG REVISION="none"
 ARG GITHUB_WORKFLOW="none"
 ARG GITHUB_RUN_ID="none"
 
-RUN apk upgrade --update-cache -a && \
-    apk add --no-cache \
-    git \
-    nodejs
+ENV PYTHONUNBUFFERED=1
+
+RUN apk add --update --no-cache python3 git nodejs && ln -sf python3 /usr/bin/python
+RUN python3 -m ensurepip
+RUN pip3 install --no-cache --upgrade pip setuptools
+
 COPY requirements.txt requirements.txt
 COPY mkdocs-macro-pluglets mkdocs-macro-pluglets
-RUN /usr/local/bin/python -m pip install --upgrade pip
-RUN pip install -r requirements.txt --no-cache-dir
+RUN python3 -m pip install --upgrade pip
+RUN pip3 install -r requirements.txt --no-cache-dir
 COPY common common
 
 EXPOSE 8000
