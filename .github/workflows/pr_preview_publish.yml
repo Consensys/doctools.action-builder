@@ -15,9 +15,6 @@ jobs:
       pull-requests: write
 
     steps:
-      - run: |
-          sudo rm /etc/docker/daemon.json
-          sudo systemctl restart docker
       - name: Checkout code from repos
         uses: actions/checkout@v2
         with:
@@ -30,12 +27,14 @@ jobs:
       - name: Generate PR slug
         shell: sh
         id: generate_pr_slug
-        run: echo "::set-output name=slug::PR-${{ github.event.number }}"
+        run: |
+          echo "::set-output name=slug::PR-${{ github.event.number }}"
+          echo "::set-output name=image::$IMAGE_NAME$GITHUB_SHA"
 
       - name: Build test image
         shell: sh
         run: |
-          docker build . --tag $IMAGE_NAME
+          docker build . --tag ${{ steps.generate_pr_slug.outputs.image }}
 
       - name: Build preview site
         shell: sh
@@ -44,7 +43,7 @@ jobs:
           -e VERSION=test \
           -v ${PWD}:/workspace \
           -w /workspace \
-          $IMAGE_NAME \
+          ${{ steps.generate_pr_slug.outputs.image }} \
           build -s \
           --config-file /workspace/tests/mkdocs.yml
 
