@@ -5,6 +5,7 @@ on: [ pull_request ]
 
 env:
   IMAGE_NAME: doctools-builder-test
+  WORKSPACE_DIR: /workspace
 
 jobs:
   deploy:
@@ -36,13 +37,16 @@ jobs:
         run: |
           docker build . --tag ${{ steps.generate_pr_slug.outputs.image }}
 
+      - name: provide git log read permission # see https://github.blog/2022-04-12-git-security-vulnerability-announced/
+        run: git config --global --add safe.directory $WORKSPACE_DIR
+
       - name: Build preview site
         shell: sh
         run: |
           docker run --rm \
           -e VERSION=test \
-          -v ${PWD}:/workspace \
-          -w /workspace \
+          -v ${PWD}:$WORKSPACE_DIR \
+          -w $WORKSPACE_DIR \
           ${{ steps.generate_pr_slug.outputs.image }} \
           build -s \
           --config-file /workspace/tests/mkdocs.yml
