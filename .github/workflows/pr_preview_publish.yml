@@ -28,14 +28,12 @@ jobs:
       - name: Generate PR slug
         shell: sh
         id: generate_pr_slug
-        run: |
-          echo "::set-output name=slug::PR-${{ github.event.number }}"
-          echo "::set-output name=image::$IMAGE_NAME$GITHUB_SHA"
+        run: echo "::set-output name=slug::PR-${{ github.event.number }}"
 
       - name: Build test image
         shell: sh
         run: |
-          docker build . --tag ${{ steps.generate_pr_slug.outputs.image }} --build-arg WORKSPACE_DIR=$WORKSPACE_DIR
+          docker build . --tag $IMAGE_NAME --build-arg WORKSPACE_DIR=$WORKSPACE_DIR
 
       - name: Build preview site
         shell: sh
@@ -44,7 +42,7 @@ jobs:
           -e VERSION=test \
           -v ${PWD}:$WORKSPACE_DIR \
           -w $WORKSPACE_DIR \
-          ${{ steps.generate_pr_slug.outputs.image }} \
+          $IMAGE_NAME \
           build -s \
           --config-file /workspace/tests/mkdocs.yml
 
