@@ -1,7 +1,7 @@
 ---
 name: Publish PR preview
 
-on: [ pull_request ]
+on: [ pull_request_target ]
 
 env:
   IMAGE_NAME: doctools-builder-test
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout code from repos
         uses: actions/checkout@v3
         with:
-#          ref: refs/pull/${{ github.event.number }}/merge # required to pull the PR code instead of the main one
+          ref: refs/pull/${{ github.event.number }}/merge # required to pull the PR code instead of the main one
           fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
 
       - name: Get additional Github env vars # vars from Github env, can not be modified by users
