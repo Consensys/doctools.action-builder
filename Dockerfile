@@ -5,6 +5,7 @@ ARG VERSION="local"
 ARG REVISION="none"
 ARG GITHUB_WORKFLOW="none"
 ARG GITHUB_RUN_ID="none"
+ARG WORKSPACE_DIR=/workspace
 
 RUN apk upgrade --update-cache -a && \
     apk add --no-cache \
@@ -16,9 +17,13 @@ RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip install -r requirements.txt --no-cache-dir
 COPY common common
 
+# see https://github.blog/2022-04-12-git-security-vulnerability-announced/
+RUN git config --global --add safe.directory ${WORKSPACE_DIR}
+
 EXPOSE 8000
 
 # Build doc by default
+WORKDIR ${WORKSPACE_DIR}
 ENTRYPOINT ["mkdocs"]
 CMD ["serve", "--dev-addr", "0.0.0.0:8000"]
 
