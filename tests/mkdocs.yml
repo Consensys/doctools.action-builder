@@ -20,6 +20,7 @@ theme:
 nav:
   - Home: index.md
   - API: api.md
+  - Home with button: home_with_button.md
 
 plugins:
   git-revision-date-localized:
