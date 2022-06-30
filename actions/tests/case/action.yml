@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: Apache-2.0
+---
+name: 'Check pages file name case'
+description: 'Composite action to check case of files in doc'
+
+inputs:
+  DOC_DIR:
+    description: 'doc directory path from project root'
+    required: false
+    default: docs
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check pages file name case
+      shell: sh
+      run: |
+        if
+          find $DOC_DIR -name "*.md" | ( ! grep -P -v "^[[:lower:][:digit:]\/\-_]+\.md$" )
+        then
+          echo "::notice ::No file paths casing issue in $DOC_DIR."
+          exit 0;
+        else
+          echo "::error ::Some file paths are not lowercase in $DOC_DIR."
+          echo "::notice ::Accepted characters: lowercase letters, digits, . (dot) - (dash) and _ (underscore)"
+          echo "::notice ::Correct example: my-folder/my-file-name_new2.md"
+          echo "::notice ::Wrong example: My-Folder/MyFile-NAME.old.md"
+          exit 1;
+        fi
