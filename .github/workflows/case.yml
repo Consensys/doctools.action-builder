@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check file name case
-        uses: ConsenSys/doctools.action-builder/actions/tests/case@main
+        uses: ./actions/tests/case
         with:
           DOC_DIR: tests/docs
