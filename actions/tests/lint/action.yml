@@ -12,7 +12,7 @@ runs:
   using: "composite"
   steps:
     - name: Checkout tools repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: ConsenSys/doctools.action-builder
         path: .doctools.action-builder

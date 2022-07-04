@@ -1,0 +1,17 @@
+---
+name: Check file name case
+
+on: [pull_request]
+
+jobs:
+  check:
+    name: Check file name case
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check file name case
+        uses: ./actions/tests/case
+        with:
+          DOC_DIR: tests/docs
