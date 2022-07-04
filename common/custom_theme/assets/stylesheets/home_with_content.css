@@ -11,7 +11,7 @@
 }
 
 .md-typeset h1, h2 {
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 1;
   margin: 0;
   color: var(--md-primary-fg-color--dark);
@@ -25,16 +25,16 @@
   font-weight: 400;
 }
 
-.md-typeset p {
+.md-typeset p, ul {
   font-weight: 400;
   letter-spacing: .2px;
   line-height: 1.5;
-  font-size: 1.125rem;
+  font-size: 1rem;
   opacity: .8;
 }
 
 .md-typeset .main_content_cta--container {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 }
 
 .md-typeset .main_content_cta {
