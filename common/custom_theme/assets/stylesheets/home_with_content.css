@@ -10,9 +10,14 @@
   background-image: var(--dt-md-container-background-image);
 }
 
+.md-sidebar {
+  display: none !important;
+}
+
 .md-typeset h1, h2 {
   font-size: 2rem;
   line-height: 1;
+  padding-bottom: .5rem;
   margin: 0;
   color: var(--md-primary-fg-color--dark);
   font-weight: 700;
