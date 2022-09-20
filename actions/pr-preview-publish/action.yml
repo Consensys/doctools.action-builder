@@ -12,6 +12,9 @@ inputs:
     description: 'doc language to build'
     required: false
     default: gh-pages
+  PREVIEW_DOMAIN:
+    description: 'doc preview domain if not default public one'
+    required: false
 
 runs:
   using: "composite"
@@ -24,10 +27,21 @@ runs:
       id: generate_pr_slug
       run: echo "::set-output name=slug::PR-${{ github.event.number }}"
 
+    - name: set default preview domain
+      shell: sh
+      run: echo "PREVIEW_DOMAIN=https://${{ env.CI_REPOSITORY_OWNER_SLUG }}.github.io/${{ env.CI_REPOSITORY_NAME }}/" >> $GITHUB_ENV
+
+    - name: set custom preview domain if defined
+      shell: sh
+      env:
+        preview_domain: ${{ inputs.PREVIEW_DOMAIN }}
+      if: ${{ env.preview_domain != '' }}
+      run: echo "PREVIEW_DOMAIN=${{env.preview_domain}}" >> $GITHUB_ENV
+
     - name: Build doc
       uses: ConsenSys/doctools.action-builder/actions/build@main
       with:
-        SITE_ROOT: https://${{ env.CI_REPOSITORY_OWNER_SLUG }}.github.io/${{ env.CI_REPOSITORY_NAME }}/
+        SITE_ROOT: ${{env.PREVIEW_DOMAIN}}
         VERSION: ${{ steps.generate_pr_slug.outputs.slug }}
         LANGUAGE: ${{ inputs.LANGUAGE }}
 
@@ -46,4 +60,4 @@ runs:
         header: preview
         recreate: true
         message: |
-          [Doc preview for this PR #${{ github.event.number }} is available](https://${{ env.CI_REPOSITORY_OWNER }}.github.io/${{ env.CI_REPOSITORY_NAME }}/${{ steps.generate_pr_slug.outputs.slug }})
+          [Doc preview for this PR #${{ github.event.number }} is available](${{env.PREVIEW_DOMAIN}}${{ steps.generate_pr_slug.outputs.slug }})
