@@ -6,10 +6,10 @@ hide:
   - toc
   - navigation
 spec:
-  url: specs/Petstore.json
+  url: api/specs/Petstore.json
 ---
 
-# API Pestore
+# API Petstore
 
 ## How to use it
 
