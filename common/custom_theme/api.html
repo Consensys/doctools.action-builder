@@ -1,9 +1,9 @@
 <!--SPDX-License-Identifier: Apache-2.0-->
 {% extends "main.html" %}
 
-{% block main %}
-<div id="redoc-container"></div>
+{% block page_content %}
 {{ super() }}
+<div id="redoc-container"></div>
 {% endblock %}
 
 {% block styles %}
@@ -17,5 +17,3 @@
 <script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"></script>
 <script src="{{ 'assets/javascripts/api.js' | url }}"></script>
 {% endblock %}
-
-{% block content %}{% endblock %}
