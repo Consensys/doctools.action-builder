@@ -28,7 +28,9 @@
   {% endif %}
 
   <!-- Markdown content -->
+  {% block page_content %}
   {{ page.content }}
+  {% endblock %}
 {% endblock %}
 
 {% block scripts %}

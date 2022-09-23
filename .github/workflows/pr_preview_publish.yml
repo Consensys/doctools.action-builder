@@ -62,4 +62,4 @@ jobs:
           header: preview
           recreate: true
           message: |
-            [Doc preview for this PR #${{ github.event.number }} is available](https://${{ env.CI_REPOSITORY_OWNER }}.github.io/${{ env.CI_REPOSITORY_NAME }}/${{ steps.generate_pr_slug.outputs.slug }})
+            [Doc preview for this PR #${{ github.event.number }} is available](https://${{ env.CI_REPOSITORY_OWNER }}.github.io/${{ env.CI_REPOSITORY_NAME }}/${{ steps.generate_pr_slug.outputs.slug }}/)
