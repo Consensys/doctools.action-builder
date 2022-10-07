@@ -11,11 +11,9 @@ function getTheme(element) {
   }
 }
 
-function redocInitDone() {
-  if (!isAPIFullScreen) {
-    $("a[href='https://redocly.com/redoc/']").parent().css(
-        {'position': 'absolute', 'bottom': '0'});
-  }
+function redocInitDone(param) {
+  $(".redoc-container[fullscreen='false'] a[href='https://redocly.com/redoc/']").parent().css(
+      {'position': 'absolute', 'bottom': '0'});
 }
 
 function isAPIFullScreen(redocContainer) {
