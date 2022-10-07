@@ -78,8 +78,10 @@ plugins:
     htmlmin_opts:
       remove_comments: !ENV [MINIFY , true]
   macros:
+    on_error_fail: !ENV [FAIL_ON_ERROR , true]
     modules:
       - mkdocs_macros_katacoda
+      - mkdocs_macros_redoc
   git-revision-date-localized:
     locale: !ENV [LANGUAGE, 'en']
   mkdocs-video:

@@ -4,12 +4,25 @@ services:
   mkdocs:
     container_name: mkdocs-serve-builder-dev
     ports:
-      - "0.0.0.0:8000:8000"
-    image: ghscr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION:-dev}
+      - "0.0.0.0:8001:8001"
+    image: doctools-builder:test
     build:
       context: ../
     working_dir: /workspace/
-    command: ["serve", "--watch-theme" ,"--dev-addr", "0.0.0.0:8000"]
+    command: ["serve", "--watch-theme" ,"--dev-addr", "0.0.0.0:8001"]
+    environment:
+      # uncomment to output debug infos in HTML source code. Requires MINIFY=false
+      # - DEBUG=true
+      # Two letters language code. Default language is 'en'
+      # - LANGUAGE=en
+      # uncomment to prevent HTML/CSS/JS code to be minified. Useful for debugging theme.
+      - MINIFY=false
+      # uncomment to prevent search index prebuild, speeds up large sites build time.
+      - PREBUILD_INDEX=false
+      # uncomment and change to modify the preview port
+      # useful if running more than one local preview at the same time.
+      # - PORT=8001
+      # - FAIL_ON_ERROR=false
     volumes:
       - type: bind
         source: .
