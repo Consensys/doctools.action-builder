@@ -22,3 +22,4 @@ jobs:
         with:
           DOC_DIR: tests/docs
           QUIET_MODE: no
+          VERBOSE_MODE: yes

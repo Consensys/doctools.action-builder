@@ -39,7 +39,7 @@ runs:
       with:
         use-quiet-mode: ${{ inputs.QUIET_MODE }}
         use-verbose-mode: ${{ inputs.VERBOSE_MODE }}
-        check-modified-files-only: no
+        check-modified-files-only: yes
         base-branch: ${{ inputs.BRANCH }}
         config-file: ${{ inputs.CONFIG_FILE }}
         folder-path: ${{ inputs.DOC_DIR }}
