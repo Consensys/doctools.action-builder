@@ -6,6 +6,4 @@ description: Doc sample for build test
 
 This is a sample doc file for MkDocs to build.
 
-## Testing internal link
-
-[Testing internal links](#testing-internal-links)
+[Testing links with anchors](https://github.com/ConsenSys/doctools.action-builder#non-existing-anchor)

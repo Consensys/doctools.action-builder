@@ -21,4 +21,4 @@ jobs:
         uses: ./actions/tests/links
         with:
           DOC_DIR: tests/docs
-          QUIET_MODE: false
+          QUIET_MODE: no
