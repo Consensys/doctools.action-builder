@@ -29,7 +29,7 @@ runs:
     - name: Test links
       uses: gaurav-nelson/github-action-markdown-link-check@v1
       with:
-        use-quiet-mode: {{ inputs.QUIET_MODE$ }}
+        use-quiet-mode: ${{ inputs.QUIET_MODE }}
         use-verbose-mode: yes
         check-modified-files-only: yes
         base-branch: main
