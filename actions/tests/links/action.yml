@@ -3,6 +3,12 @@
 name: 'validate links'
 description: 'Composite action to validate links'
 
+inputs:
+  DOC_DIR:
+    description: 'default directory path from project root'
+    required: false
+    default: .
+
 runs:
   using: "composite"
   steps:
@@ -19,4 +25,5 @@ runs:
         use-verbose-mode: yes
         check-modified-files-only: yes
         base-branch: main
-        config-file: ./.doctools.action-builder/common/config/link-check.json
+        config-file: common/config/link-check.json
+        folder-path: ${{ inputs.DOC_DIR }}
