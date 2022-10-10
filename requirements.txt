@@ -13,3 +13,4 @@ mkdocs-render-swagger-plugin==0.0.4
 
 # Consensys Mkdocs macro pluglets
 mkdocs-macro-pluglets/mkdocs-macros-katacoda
+mkdocs-macro-pluglets/mkdocs-macros-redoc

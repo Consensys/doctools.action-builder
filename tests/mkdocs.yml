@@ -20,11 +20,16 @@ theme:
 nav:
   - Home: index.md
   - API:
-    - API with nav and toc: api/api-nav-toc.md
-    - API without nav and toc: api/api.md
+    - API with nav and toc: api/api-page-nav-toc.md
+    - API without nav and toc: api/api-page.md
+    - API fullscreen: api/api.md
   - Home with button: home_with_button.md
   - Home with content: home_with_content.md
 
 plugins:
   git-revision-date-localized:
     fallback_to_build_date: true
+
+watch:
+  - /common/custom_theme/base.yml
+  - mkdocs.yml
