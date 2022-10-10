@@ -8,6 +8,14 @@ inputs:
     description: 'default directory path from project root'
     required: false
     default: .
+  QUIET_MODE:
+    description: 'default to only show errors in output.'
+    required: false
+    default: yes
+  CONFIG_FILE:
+    description: 'default config file.'
+    required: false
+    default: common/config/link-check.json
 
 runs:
   using: "composite"
@@ -21,9 +29,9 @@ runs:
     - name: Test links
       uses: gaurav-nelson/github-action-markdown-link-check@v1
       with:
-        use-quiet-mode: yes
+        use-quiet-mode: {{ inputs.QUIET_MODE$ }}
         use-verbose-mode: yes
         check-modified-files-only: yes
         base-branch: main
-        config-file: common/config/link-check.json
+        config-file: ${{ inputs.CONFIG_FILE }}
         folder-path: ${{ inputs.DOC_DIR }}
