@@ -32,7 +32,26 @@
       "pattern": "^http(s)?://help.figma.com"
     },
     {
-      "pattern": "^http(s)?://docs.github.com"
+      "comment": "Skip urls in the redoc macro with entity",
+      "pattern": "http(s)?://.+\\&\\#39\\;"
+    }
+  ,
+    {
+      "comment": "Skip urls in the redoc macro with char",
+      "pattern": "http(s)?://.+'"
+    }
+  ],
+  "httpHeaders": [
+    {
+      "urls": [
+        "https://github.com/",
+        "https://guides.github.com/",
+        "https://help.github.com/",
+        "https://docs.github.com/"
+      ],
+      "headers": {
+        "Accept-Encoding": "zstd, br, gzip, deflate"
+      }
     }
   ],
   "timeout": "30s",

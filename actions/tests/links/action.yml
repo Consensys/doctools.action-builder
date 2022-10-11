@@ -3,6 +3,28 @@
 name: 'validate links'
 description: 'Composite action to validate links'
 
+inputs:
+  DOC_DIR:
+    description: 'default directory path from project root'
+    required: false
+    default: .
+  QUIET_MODE:
+    description: 'default to only show errors in output.'
+    required: false
+    default: yes
+  VERBOSE_MODE:
+    description: 'default to show detailed HTTP status for checked links.'
+    required: false
+    default: yes
+  CONFIG_FILE:
+    description: 'default config file.'
+    required: false
+    default: common/config/link-check.json
+  BRANCH:
+    description: 'default branch'
+    required: false
+    default: main
+
 runs:
   using: "composite"
   steps:
@@ -15,8 +37,9 @@ runs:
     - name: Test links
       uses: gaurav-nelson/github-action-markdown-link-check@v1
       with:
-        use-quiet-mode: yes
-        use-verbose-mode: yes
+        use-quiet-mode: ${{ inputs.QUIET_MODE }}
+        use-verbose-mode: ${{ inputs.VERBOSE_MODE }}
         check-modified-files-only: yes
-        base-branch: main
-        config-file: ./.doctools.action-builder/common/config/link-check.json
+        base-branch: ${{ inputs.BRANCH }}
+        config-file: ${{ inputs.CONFIG_FILE }}
+        folder-path: ${{ inputs.DOC_DIR }}
