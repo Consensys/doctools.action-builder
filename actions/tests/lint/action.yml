@@ -28,3 +28,4 @@ runs:
         LOG_LEVEL: ERROR
         FILTER_REGEX_EXCLUDE: ./common
         CSS_FILE_NAME: .stylelintrc.yaml
+        IGNORE_GENERATED_FILES: 'true'
