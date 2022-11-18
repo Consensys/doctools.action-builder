@@ -97,6 +97,6 @@ $(function() {
 $('#__version').change(function(){
   const targetVersion = $(this).val();
   console.log(targetVersion);
-  window.location.href = cleanSiteUrl + "/" + site_current_language + "/" + targetVersion;
+  window.location.href = cleanSiteUrl + "/" + site_current_language + "/" + targetVersion + "/";
   return false
 });
