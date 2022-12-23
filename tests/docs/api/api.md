@@ -6,5 +6,5 @@ hide:
   - toc
   - navigation
 spec:
-  url: api/specs/Petstore.json
+  url: api/specs/petstore-open-api-v3.yml
 ---

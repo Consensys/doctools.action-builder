@@ -3,7 +3,7 @@
 
 {% block main %}
   {% if page.meta.spec and page.meta.spec.url %}
-    <div class="redoc-container" spec-url="{{ page.meta.spec.url | url }}" fullscreen="true"></div>
+    <div class="redoc-container" spec-url="{{ page.meta.spec.url | url }}" fullscreen="true" expand-default-server-variables="true"></div>
   {% else %}
     {{ super() }}
   {% endif %}
