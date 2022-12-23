@@ -66,6 +66,10 @@ markdown_extensions:
   - smarty
   - plantuml_markdown:
       server: http://www.plantuml.com/plantuml
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
 
 plugins:
   search:

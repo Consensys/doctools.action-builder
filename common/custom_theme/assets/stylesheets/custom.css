@@ -65,6 +65,10 @@
   --mdx-version-bg-color: rgba(33, 63, 164, 0.9);
 }
 
+:root > * {
+  --md-code-hl-comment-color: #b3ccfb;
+}
+
 .md-typeset .admonition.critical,
 .md-typeset details.critical {
   border-color: rgb(222, 0, 0);
