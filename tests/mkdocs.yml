@@ -25,6 +25,7 @@ nav:
     - API fullscreen: api/api.md
   - Home with button: home_with_button.md
   - Home with content: home_with_content.md
+  - Page with snippets: snippets.md
 
 plugins:
   git-revision-date-localized:
